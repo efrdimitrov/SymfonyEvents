@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div id="wrapper">
+        <div id="container">
+            <a href="{{ path('event_create') }}">Create New Event</a>
+            <table border="1">
+                <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Category</td>
+                    <td>Description</td>
+                    <td>Date</td>
+                </tr>
+                </thead>
+                <tbody>
+                {% for event in events %}
+                <tr>
+                    <td>{{ event.name }}</td>
+                    <td>{{ event.categoryName }}</td>
+                    <td>{{ event.description }}</td>
+                    <td>{{ event.dateEvent }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

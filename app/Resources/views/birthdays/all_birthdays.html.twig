@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <div id="wrapper">
+        <div id="container">
+            <a href="{{ path('create_birthday') }}">Create Birthday</a>
+            <table style="border: 2px solid;">
+                <thead style="border: 2px solid;">
+                <tr>
+                    <td style="border: 2px solid;">Name</td>
+                    <td>Date</td>
+                </tr>
+                </thead>
+                <tbody style="border: 2px solid;">
+                {% for birthday in birthdays %}
+                    <tr style="border: 2px solid;">
+                        <td style="border: 2px solid;">{{ birthday.name }}</td>
+{#                        <td style="border: 2px solid;">{{ birthday.getBornOn }}</td>#}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+

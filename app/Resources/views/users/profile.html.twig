@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <h3> Hello {{ user.username }} </h3>
+
+    <h3>Email {{ user.email }} </h3>
+
+    <div>
+        <a href="{{ path('create_event') }}" class="navbar-brand">
+            Add New Event
+        </a>
+    </div>
+    <br/>
+    <div id="wrapper">
+        <div id="container">
+            <table border="1">
+                <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Description</td>
+                    <td>Category</td>
+                    <td>Date</td>
+                </tr>
+                </thead>
+                <tbody>
+{#                {% for event in events %}#}
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+{#                {% endfor %}#}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
