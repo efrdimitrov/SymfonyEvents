@@ -3,7 +3,6 @@
 namespace EventBundle\Controller;
 
 use EventBundle\Entity\User;
-use EventBundle\Entity\Event;
 use EventBundle\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,7 +41,7 @@ class UserController extends Controller
      * @Route("/profile", name="user_profile")
      */
     public function profile()
-    { echo "profileUserController";
+    {
 
         $userRepository = $this->getDoctrine()
             ->getRepository(User::class);

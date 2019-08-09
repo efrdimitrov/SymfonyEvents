@@ -7,7 +7,7 @@
             <form name="authenticate" class="form-horizontal" action="{{ path('added_birthday') }}" method="post">
                 <fieldset>
                     <legend>Add New Birthday
-                        <a class="btn btn-info bnt-xs pull-right" href="{{ path('all_birthdays') }}">All Birthdays</a>
+                        <a class="btn btn-info bnt-xs pull-right" href="{{ path('my_birthdays') }}">All Birthdays</a>
                     </legend>
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="event_name">Name</label>
@@ -26,7 +26,7 @@
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
                     <div class="form-group">
                         <div class="col-sm-4 col-sm-offset-4">
-                            <a class="btn btn-default" href="{{ path('all_birthdays') }}">Cancel</a>
+                            <a class="btn btn-default" href="{{ path('my_birthdays') }}">Cancel</a>
                             <button type="submit" class="btn btn-primary">Add</button>
                         </div>
                     </div>

@@ -78,7 +78,7 @@ class BirthdayController extends Controller
     }
 
     /**
-     * @Route("/all_birthdays", name="all_birthdays")
+     * @Route("/my_birthdays", name="my_birthdays")
      *
      * @return Response
      */
@@ -89,7 +89,7 @@ class BirthdayController extends Controller
             ->getRepository(Birthday::class)
             ->findAll();
 
-        return $this->render("birthdays/all_birthdays.html.twig",
+        return $this->render("birthdays/my_birthdays.html.twig",
             ['birthdays' => $birthdays]);
     }
 
