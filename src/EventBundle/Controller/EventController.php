@@ -100,7 +100,7 @@ class EventController extends Controller
             $em->merge($event);
             $em->flush();
 
-            return $this->redirectToRoute("all_events");
+            return $this->redirectToRoute("my_events");
         }
 
         $categoryRepository = $this
@@ -129,6 +129,14 @@ class EventController extends Controller
     {
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
+
+        if($form->isSubmitted()){
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($event);
+            $em->flush();
+
+            return $this->redirectToRoute("my_events");
+        }
 
         $categoryRepository = $this
             ->getDoctrine()

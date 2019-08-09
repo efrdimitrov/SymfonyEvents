@@ -111,7 +111,7 @@ class BirthdayController extends Controller
             $em->merge($birthday);
             $em->flush();
 
-            return $this->redirectToRoute("all_birthdays");
+            return $this->redirectToRoute("my_birthdays");
         }
 
         return $this->render("birthdays/edit_birthday.html.twig",
@@ -139,7 +139,7 @@ class BirthdayController extends Controller
             $em->remove($birthday);
             $em->flush();
 
-            return $this->redirectToRoute("all_birthdays");
+            return $this->redirectToRoute("my_birthdays");
         }
 
         return $this->render("birthdays/delete_birthday.html.twig",
