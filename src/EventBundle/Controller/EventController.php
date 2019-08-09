@@ -71,7 +71,7 @@ class EventController extends Controller
      *
      * @return Response
      */
-    public function myEvent()
+    public function myEvents()
     {
         $events = $this
             ->getDoctrine()
