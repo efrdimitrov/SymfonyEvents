@@ -3,18 +3,30 @@
 namespace EventBundle\Controller;
 
 use EventBundle\Entity\Category;
+use EventBundle\Form\CategoryType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CategoryController extends Controller
 {
-    /**
-     * @Route("/create_event", name="create_event")
-     */
-    public function getAll(Category $category)
-    { echo 'CategoryController';
 
-        return $this->render("events/create_event.html.twig",
-            ['categories' => $category]);
-    }
+//    /**
+//     * @Route("/allEvents", name="all_events")
+//     *
+//     * @param Request $request
+//     * @return Response
+//     */
+//    public function getAll(Request $request)
+//    {
+//        $categories = $this
+//            ->getDoctrine()
+//            ->getRepository(Category::class)
+//            ->findAll($request);
+//
+//        return $this->render("events/all_events.html.twig",
+//            ['categories' => $categories]);
+//    }
+
 }

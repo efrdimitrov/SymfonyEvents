@@ -2,14 +2,15 @@
 
 namespace EventBundle\Controller;
 
+use EventBundle\Entity\Category;
 use EventBundle\Entity\Event;
 use EventBundle\Form\EventType;
 use EventBundle\Service\EventServiceInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class EventController extends Controller
 {
@@ -27,68 +28,28 @@ class EventController extends Controller
         $this->eventService = $eventService;
     }
 
-    /**
-     * @Route("/all_events", name="all_events")
-     */
-    public function homeEvent()
-    {
-        /**
-         * @Route("/all_events", name="all_events"
-         */
-        return $this->render("events/all_events.html.twig",
-            ['events' => $this->eventService->getAll()]);
-
-    }
-
-
-//    /**
-//     * @Route("/profile", name="user_profile")
-//     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
-//     * @return Response
-//     */
-//    public function create()
-//    { echo 'eventCon';
-//        return $this->render('events/create_event.html.twig');
-//    }
 
     /**
-     * @Route("/profile", name="user_profile")
-     */
-    public function getEvent()
-    { echo 'eventCon';
-        $eventRepository = $this->getDoctrine()
-            ->getRepository(Event::class);
-
-        $events = $eventRepository->find($this->getUser());
-
-        return $this->render("users/profile.html.twig",
-            ['events' => $events]);
-    }
-
-    /**
-     * @Route("/all_events", name="all_events")
+     * @Route("/create_event", name="create_event")
+     *
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @return Response
      */
-    public function getAll()
+    public function create()
     {
-        return $this->render('events/all_events.html.twig');
+
+        $categoryRepository = $this
+            ->getDoctrine()
+            ->getRepository(Category::class);
+
+        $categories = $categoryRepository->findAll();
+
+        return $this->render("events/create_event.html.twig",
+                ['categories' => $categories]);
     }
 
-//    /**
-//     * @Route("", name="create_event")
-//     *
-//     * @return Response
-//     */
-//    public function create()
-//    {
-//        return $this->render('events/create_event.html.twig',
-//            ['form' => $this->createForm(EventType::class)->createView()]);
-//
-//    }
-
     /**
-     * @Route("/all_events", name="all_events_process")
-     * @Method({"POST"})
+     * @Route("/added_event", name="added_event")
      *
      * @param Request $request
      * @return Response
@@ -96,10 +57,91 @@ class EventController extends Controller
     public function createProcess(Request $request)
     {
         $event = new Event();
+        $event->setAuthor($this->getUser());
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
         $this->eventService->save($event);
 
-        return $this->redirectToRoute('all_events');
+        return $this->render("events/added_event.html.twig",
+            ['event' => $event]);
     }
+
+    /**
+     * @Route("/all_events", name="all_events")
+     *
+     * @return Response
+     */
+    public function getAll()
+    {
+        $events = $this
+            ->getDoctrine()
+            ->getRepository(Event::class)
+            ->findAll();
+
+        return $this->render("events/all_events.html.twig",
+            ['events' => $events]);
+    }
+
+    /**
+     * @Route("/edit_event/{id}", name="edit_event")
+     *
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     * @param Request $request
+     * @param Event $event
+     * @return Response
+     */
+    public function edit(Request $request, Event $event)
+    {
+        $form = $this->createForm(EventType::class, $event);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted()){
+            $em = $this->getDoctrine()->getManager();
+            $em->merge($event);
+            $em->flush();
+
+            return $this->redirectToRoute("all_events");
+        }
+
+        $categoryRepository = $this
+            ->getDoctrine()
+            ->getRepository(Category::class);
+
+        $categories = $categoryRepository->findAll();
+
+        return $this->render('events/edit_event.html.twig',
+            [
+                'form' => $form->createView(),
+                'event' => $event,
+                'categories' => $categories
+            ]);
+    }
+
+    /**
+     * @Route("/delete/{id}", name="delete_event")
+     *
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     * @param Request $request
+     * @param Event $event
+     * @return Response
+     */
+    public function delete(Request $request, Event $event)
+    {
+        $form = $this->createForm(EventType::class, $event);
+        $form->handleRequest($request);
+
+        $categoryRepository = $this
+            ->getDoctrine()
+            ->getRepository(Category::class);
+
+        $categories = $categoryRepository->findAll();
+
+        return $this->render('events/edit_event.html.twig',
+            [
+                'form' => $form->createView(),
+                'event' => $event,
+                'categories' => $categories
+            ]);
+    }
+
 }
