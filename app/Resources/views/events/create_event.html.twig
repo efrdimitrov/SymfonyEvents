@@ -4,22 +4,24 @@
 
     <div class="container body-content span=8 offset=2">
         <div class="well">
-            <form name="authenticate" class="form-horizontal" action="{{ path('all_events') }}" method="post">
+            <form name="authenticate" class="form-horizontal" action="{{ path('added_event') }}" method="post">
                 <fieldset>
-                    <legend>Add New Event</legend>
+                        <legend>Add New Event
+                            <a class="btn btn-info bnt-xs pull-right" href="{{ path('all_events') }}">All Events</a>
+                        </legend>
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="event_name">Name</label>
                         <div class="col-sm-4 ">
-                            <input class="form-control" id="event_name" placeholder="Name" name="_name">
+                            <input class="form-control" id="event_name" placeholder="Name" name="event[name]">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="category">Category
-                            <select name="category_name">
+                            <select name="event[categoryName]">
                                 {% for category in categories %}
-                                <option>{{ category.getName }}</option>
-                               {% endfor %}
+                                    <option>{{ category.name }}</option>
+                                {% endfor %}
                             </select>
                         </label>
                     </div>
@@ -27,7 +29,7 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="description">Description</label>
                         <div class="col-sm-4">
-                            <textarea class="form-control" id="description" name="_description"></textarea>
+                            <textarea class="form-control" id="description" name="event[description]"></textarea>
                         </div>
                     </div>
 
@@ -35,7 +37,7 @@
                         <label class="col-sm-4 control-label" for="event_date">Date</label>
                         <div class="col-sm-4 ">
                             <input type="date" class="form-control" id="event_date" placeholder="Name"
-                                   name="_date_event">
+                                   name="event[dateEvent]">
                         </div>
                     </div>
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>

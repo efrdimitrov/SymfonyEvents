@@ -4,14 +4,16 @@
 
     <div id="wrapper">
         <div id="container">
-            <a href="{{ path('event_create') }}">Create New Event</a>
-            <table border="1">
+            <a href="{{ path('create_event') }}">Create New Event</a>
+            <table class="table-striped">
                 <thead>
                 <tr>
                     <td>Name</td>
                     <td>Category</td>
                     <td>Description</td>
                     <td>Date</td>
+                    <td>Edit</td>
+                    <td>Delete</td>
                 </tr>
                 </thead>
                 <tbody>
@@ -20,7 +22,9 @@
                     <td>{{ event.name }}</td>
                     <td>{{ event.categoryName }}</td>
                     <td>{{ event.description }}</td>
-                    <td>{{ event.dateEvent }}</td>
+                    <td>{{ event.dateEvent|date('d.m.Y') }}</td>
+                    <td><a class="btn btn-success bnt-xs" href="{{ path('edit_event', {id: event.id}) }}">Edit</a> </td>
+                    <td><a class="btn btn-danger bnt-xs" href="{{ path('delete_event', {id: event.id}) }}">Delete</a> </td>
                 </tr>
                 {% endfor %}
                 </tbody>
