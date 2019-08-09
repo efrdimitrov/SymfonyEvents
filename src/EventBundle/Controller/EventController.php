@@ -67,18 +67,18 @@ class EventController extends Controller
     }
 
     /**
-     * @Route("/all_events", name="all_events")
+     * @Route("/my_events", name="my_events")
      *
      * @return Response
      */
-    public function getAll()
+    public function myEvent()
     {
         $events = $this
             ->getDoctrine()
             ->getRepository(Event::class)
             ->findAll();
 
-        return $this->render("events/all_events.html.twig",
+        return $this->render("events/my_events.html.twig",
             ['events' => $events]);
     }
 
