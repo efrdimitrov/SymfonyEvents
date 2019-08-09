@@ -8,14 +8,19 @@
                 <thead style="border: 2px solid;">
                 <tr>
                     <td style="border: 2px solid;">Name</td>
-                    <td>Date</td>
+                    <td>Born On</td>
+                    <td>Edit</td>
+                    <td>Delete</td>
                 </tr>
                 </thead>
                 <tbody style="border: 2px solid;">
                 {% for birthday in birthdays %}
                     <tr style="border: 2px solid;">
                         <td style="border: 2px solid;">{{ birthday.name }}</td>
-{#                        <td style="border: 2px solid;">{{ birthday.getBornOn }}</td>#}
+                        <td style="border: 2px solid;">{{ birthday.getBornOn|date('d.m.Y') }}</td>
+                        <td><a class="btn btn-success bnt-xs" href="{{ path('edit_birthday', {id: birthday.id}) }}">Edit</a> </td>
+                        <td><a class="btn btn-danger bnt-xs" onclick="return confirm('are u sure?')"
+                               href="{{ path('delete_birthday', {id: birthday.id}) }}">Delete</a> </td>
                     </tr>
                 {% endfor %}
                 </tbody>

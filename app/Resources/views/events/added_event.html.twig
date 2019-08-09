@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div id="wrapper">
+        <div id="container">
+            <a class="btn btn-default bnt-xs" href="{{ path('create_event') }}">Create New Event</a>
+            <a class="btn btn-info bnt-xs" href="{{ path('all_events') }}">All Events</a>
+            <br/>
+            <div class="table-condensed">
+                <div class="navbar-header">
+                    <div>Name: </div>
+                    <div>Category: </div>
+                    <div>Description: </div>
+                    <div>Date: </div>
+                </div>
+                <div class="navbar-header">
+                    <div>{{ event.name }}</div>
+                    <div>{{ event.categoryName }}</div>
+                    <div>{{ event.description }}</div>
+                    <div>{{ event.dateEvent|date('d.m.Y') }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

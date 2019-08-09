@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * CategoryType
  *
  * @ORM\Table(name="categories")
- * @ORM\Entity(repositoryClass="EventBundle\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="EventBundle\Repository\CategoryRepository")
  */
 class Category implements UserInterface
 {
@@ -51,7 +51,7 @@ class Category implements UserInterface
      * @var Category
      * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->name;
     }
@@ -129,4 +129,5 @@ class Category implements UserInterface
     {
         return $this->getUsername();
     }
+
 }

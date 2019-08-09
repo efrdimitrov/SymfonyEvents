@@ -40,7 +40,11 @@ class EventService implements EventServiceInterface
         return $this->eventRepository->findAll();
     }
 
-    public function get(int $id): Event
+    /**
+     * @param int $id
+     * @return Event
+     */
+    public function lastEvent(int $id): Event
     {
        return $this->eventRepository->find($id);
     }
@@ -51,4 +55,9 @@ class EventService implements EventServiceInterface
         $this->entityManager->flush();
     }
 
+
+    public function get(int $id): Event
+    {
+        // TODO: Implement get() method.
+    }
 }

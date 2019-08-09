@@ -10,30 +10,22 @@
             Add New Event
         </a>
     </div>
-    <br/>
-    <div id="wrapper">
-        <div id="container">
-            <table border="1">
-                <thead>
-                <tr>
-                    <td>Name</td>
-                    <td>Description</td>
-                    <td>Category</td>
-                    <td>Date</td>
-                </tr>
-                </thead>
-                <tbody>
-{#                {% for event in events %}#}
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-{#                {% endfor %}#}
-                </tbody>
-            </table>
-        </div>
+
+    <div>
+        <a href="{{ path('create_birthday') }}" class="navbar-brand">
+            Add New Birthday
+        </a>
     </div>
 
+    <div>
+        <a href="{{ path('all_events') }}" class="navbar-brand">
+            My Events
+        </a>
+    </div>
+
+    <div>
+        <a href="{{ path('all_birthdays') }}" class="navbar-brand">
+            My Birthdays
+        </a>
+    </div>
 {% endblock %}

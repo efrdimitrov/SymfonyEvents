@@ -65,16 +65,16 @@ class User implements UserInterface
      */
     private $birthdays;
 
-    /**
-     * User constructor.
-     * @param ArrayCollection $events
-     * @param ArrayCollection $birthdays
-     */
-    public function __construct(ArrayCollection $events, ArrayCollection $birthdays)
-    {
-        $this->events = $events;
-        $this->birthdays = $birthdays;
-    }
+//    /**
+//     * User constructor.
+//     * @param ArrayCollection $events
+//     * @param ArrayCollection $birthdays
+//     */
+//    public function __construct(ArrayCollection $events, ArrayCollection $birthdays)
+//    {
+//        $this->events = $events;
+//        $this->birthdays = $birthdays;
+//    }
 
     /**
      * @return mixed

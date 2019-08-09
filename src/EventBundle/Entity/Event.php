@@ -173,14 +173,13 @@ class Event
 
     /**
      * @param User $author
-     * @return Event
      */
-    public function setAuthor(User $author = null)
+    public function setAuthor(User $author)
     {
         $this->author = $author;
-
-        return $this;
     }
+
+
 
 
 }

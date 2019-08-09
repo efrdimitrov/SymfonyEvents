@@ -2,7 +2,9 @@
 
 namespace EventBundle\Form;
 
+use EventBundle\Entity\Event;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -14,19 +16,28 @@ class EventType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')
+        $builder
+            ->add('name', TextType::class)
             ->add('description', TextType::class)
             ->add('categoryName', TextType::class)
-            ->add('dateEvent')
-            ->add('author');
-    }/**
+            ->add('dateEvent', DateType::class, [
+                'widget' => 'single_text',
+                // this is actually the default format for single_text
+                'format' => 'yyyy-MM-dd',
+            ]);
+        var_dump($_POST);
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'EventBundle\Entity\Event'
-        ));
+        $resolver->setDefaults(
+            [
+                'data_class' => Event::class
+            ]
+        );
     }
 
 }

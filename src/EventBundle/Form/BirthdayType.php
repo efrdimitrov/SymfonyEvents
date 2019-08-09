@@ -19,8 +19,11 @@ class BirthdayType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('bornOn', DateType::class,
-                ['format' => 'yyyy-MM-dd']);
+            ->add('bornOn', DateType::class, [
+                'widget' => 'single_text',
+                // this is actually the default format for single_text
+                'format' => 'yyyy-MM-dd'
+            ]);
     }
 
     /**
