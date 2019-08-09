@@ -82,12 +82,12 @@ class BirthdayController extends Controller
      *
      * @return Response
      */
-    public function getAll()
+    public function myBirthdays()
     {
         $birthdays = $this
             ->getDoctrine()
             ->getRepository(Birthday::class)
-            ->findAll();
+            ->findBy(['author' => $this->getUser()]);
 
         return $this->render("birthdays/my_birthdays.html.twig",
             ['birthdays' => $birthdays]);

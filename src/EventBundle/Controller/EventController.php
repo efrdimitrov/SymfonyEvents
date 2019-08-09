@@ -76,7 +76,7 @@ class EventController extends Controller
         $events = $this
             ->getDoctrine()
             ->getRepository(Event::class)
-            ->findAll();
+            ->findBy(['author' => $this->getUser()]);
 
         return $this->render("events/my_events.html.twig",
             ['events' => $events]);
