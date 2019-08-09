@@ -6,7 +6,8 @@
             <div class="well">
                 <form name="authenticate" class="form-horizontal" action="{{ path('added_birthday') }}" method="post">
                     <fieldset>
-                        <legend>Add New Birthday</legend>
+                        <a class="btn btn-default bnt-xs" href="{{ path('create_birthday') }}">Create New Birthday</a>
+                        <a class="btn btn-info bnt-xs" href="{{ path('my_birthdays') }}">My Birthdays</a>
                         <div class="form-group">
                             <label class="col-sm-4 control-label" for="event_name">Name</label>
                             <div class="col-sm-4 ">
