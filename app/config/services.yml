@@ -33,3 +33,9 @@ services:
     # EventBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+
+    EventBundle\Service\EventServiceInterface:
+        class: EventBundle\Service\EventService
+
+    EventBundle\Service\BirthdayServiceInterface:
+        class: EventBundle\Service\BirthdayService

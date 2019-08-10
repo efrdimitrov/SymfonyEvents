@@ -8,9 +8,10 @@
                 <thead style="border: 2px solid;">
                 <tr>
                     <td style="border: 2px solid;">Name</td>
-                    <td>Born On</td>
-                    <td>Edit</td>
-                    <td>Delete</td>
+                    <td style="border: 2px solid;">Born On</td>
+                    <td style="border: 2px solid;">Age</td>
+                    <td style="border: 2px solid;">Edit</td>
+                    <td style="border: 2px solid;">Delete</td>
                 </tr>
                 </thead>
                 <tbody style="border: 2px solid;">
@@ -18,8 +19,9 @@
                     <tr style="border: 2px solid;">
                         <td style="border: 2px solid;">{{ birthday.name }}</td>
                         <td style="border: 2px solid;">{{ birthday.getBornOn|date('d.m.Y') }}</td>
-                        <td><a class="btn btn-success bnt-xs" href="{{ path('edit_birthday', {id: birthday.id}) }}">Edit</a> </td>
-                        <td><a class="btn btn-danger bnt-xs" onclick="return confirm('are u sure?')"
+                        <td style="border: 2px solid;">{{ birthday.years }} г.</td>
+                        <td><a class="btn btn-success" href="{{ path('edit_birthday', {id: birthday.id}) }}">Edit</a> </td>
+                        <td><a class="btn btn-danger" onclick="return confirm('are u sure?')"
                                href="{{ path('delete_birthday', {id: birthday.id}) }}">Delete</a> </td>
                     </tr>
                 {% endfor %}

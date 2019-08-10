@@ -43,6 +43,11 @@ class Birthday
     private $author;
 
     /**
+     * @var \DateTime
+     */
+    private $years;
+
+    /**
      * Get id
      *
      * @return int
@@ -119,6 +124,14 @@ class Birthday
         return $this;
     }
 
+    function getYears()
+    {
+        return floor((time() - strtotime($this->getBornOn()->format('Y-m-d'))) / 31556926);
+    }
 
+    public function setYears($years)
+    {
+        $this->years = $years;
+    }
 }
 
