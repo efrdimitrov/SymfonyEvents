@@ -4,7 +4,7 @@
 
     <div class="container body-content span=8 offset=2">
         <div class="well">
-            <form name="authenticate" class="form-horizontal" action="{{ path('edit_birthday', {id: birthday.id}) }}" method="post">
+            <form name="authenticate" class="form-horizontal" action="{{ path('delete_birthday', {id: birthday.id}) }}" method="post">
                 <fieldset>
                     <legend>Delete Birthday</legend>
                     <div class="form-group">
@@ -24,7 +24,7 @@
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
                     <div class="form-group">
                         <div class="col-sm-4 col-sm-offset-4">
-                            <a class="btn btn-default" href="{{ path('all_birthdays') }}">Cancel</a>
+                            <a class="btn btn-default" href="{{ path('my_birthdays') }}">Cancel</a>
                             <button type="submit" class="btn btn-primary">Delete</button>
                         </div>
                     </div>

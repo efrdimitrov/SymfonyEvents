@@ -21,7 +21,7 @@
                         <td style="border: 2px solid;">{{ birthday.getBornOn|date('d.m.Y') }}</td>
                         <td style="border: 2px solid;">{{ birthday.years }} г.</td>
                         <td><a class="btn btn-success" href="{{ path('edit_birthday', {id: birthday.id}) }}">Edit</a> </td>
-                        <td><a class="btn btn-danger" onclick="return confirm('are u sure?')"
+                        <td><a class="btn btn-danger"
                                href="{{ path('delete_birthday', {id: birthday.id}) }}">Delete</a> </td>
                     </tr>
                 {% endfor %}

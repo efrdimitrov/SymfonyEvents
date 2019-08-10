@@ -24,7 +24,7 @@
                     <td>{{ event.description }}</td>
                     <td>{{ event.dateEvent|date('d.m.Y') }}</td>
                     <td><a class="btn btn-success bnt-xs" href="{{ path('edit_event', {id: event.id}) }}">Edit</a> </td>
-{#                    <td><a class="btn btn-danger bnt-xs" href="{{ path('delete_event', {id: event.id}) }}">Delete</a> </td>#}
+                    <td><a class="btn btn-danger bnt-xs" href="{{ path('delete_event', {id: event.id}) }}">Delete</a> </td>
                 </tr>
                 {% endfor %}
                 </tbody>
