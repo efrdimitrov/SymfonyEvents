@@ -13,6 +13,8 @@ interface BirthdayServiceInterface
 
     public function get(int $id): Birthday;
 
+    public function getLast() : Birthday;
+
     public function save(Birthday $birthday);
 
 }

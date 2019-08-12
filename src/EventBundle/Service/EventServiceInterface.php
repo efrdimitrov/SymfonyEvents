@@ -15,5 +15,7 @@ interface EventServiceInterface
 
     public function get(int $id): Event;
 
+    public function getLast() : Event;
+
     public function save(Event $event);
 }

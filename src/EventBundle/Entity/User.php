@@ -1,12 +1,8 @@
 <?php
-
-
 namespace EventBundle\Entity;
-
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
-
 /**
  * User
  *
@@ -15,7 +11,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
-
     /**
      * @var int
      *
@@ -24,7 +19,6 @@ class User implements UserInterface
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var string
      *
@@ -36,35 +30,30 @@ class User implements UserInterface
     {
         return $this->getUsername();
     }
-
     /**
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255)
      */
     private $password;
-
     /**
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, unique=true)
      */
     private $email;
-
     /**
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="EventBundle\Entity\Event", mappedBy="author")
      */
     private $events;
-
     /**
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="EventBundle\Entity\Birthday", mappedBy="author")
      */
     private $birthdays;
-
 //    /**
 //     * User constructor.
 //     * @param ArrayCollection $events
@@ -75,7 +64,6 @@ class User implements UserInterface
 //        $this->events = $events;
 //        $this->birthdays = $birthdays;
 //    }
-
     /**
      * @return mixed
      */
@@ -83,7 +71,6 @@ class User implements UserInterface
     {
         return $this->id;
     }
-
     /**
      * @param mixed $id
      */
@@ -91,7 +78,6 @@ class User implements UserInterface
     {
         $this->id = $id;
     }
-
     /**
      * @var User
      * @return mixed
@@ -102,16 +88,14 @@ class User implements UserInterface
     }
 
     /**
-     * @param User $username
+     * @param string $username
      * @return $this
      */
-    public function setUsername(User $username)
+    public function setUsername(string $username)
     {
         $this->username = $username;
-
         return $this;
     }
-
     /**
      * @return mixed
      */
@@ -119,7 +103,6 @@ class User implements UserInterface
     {
         return $this->password;
     }
-
     /**
      * @param mixed $password
      */
@@ -127,7 +110,6 @@ class User implements UserInterface
     {
         $this->password = $password;
     }
-
     /**
      * @return mixed
      */
@@ -135,7 +117,6 @@ class User implements UserInterface
     {
         return $this->email;
     }
-
     /**
      * @param mixed $email
      */
@@ -143,7 +124,6 @@ class User implements UserInterface
     {
         $this->email = $email;
     }
-
     /**
      * @return ArrayCollection
      */
@@ -151,7 +131,6 @@ class User implements UserInterface
     {
         return $this->events;
     }
-
     /**
      * @param Event $event
      * @return User
@@ -159,10 +138,8 @@ class User implements UserInterface
     public function addEvent(Event $event)
     {
         $this->events[] = $event;
-
         return $this;
     }
-
     /**
      * @return ArrayCollection
      */
@@ -170,7 +147,6 @@ class User implements UserInterface
     {
         return $this->birthdays;
     }
-
     /**
      * @param Birthday $birthday
      * @return User
@@ -178,10 +154,8 @@ class User implements UserInterface
     public function addBirthday(Birthday $birthday)
     {
         $this->birthdays[] = $birthday;
-
         return $this;
     }
-
     /**
      * Returns the roles granted to the user.
      *
@@ -200,7 +174,6 @@ class User implements UserInterface
     {
         return [];
     }
-
     /**
      * Returns the salt that was originally used to encode the password.
      *
@@ -212,8 +185,6 @@ class User implements UserInterface
     {
         // TODO: Implement getSalt() method.
     }
-
-
     /**
      * Removes sensitive data from the user.
      *

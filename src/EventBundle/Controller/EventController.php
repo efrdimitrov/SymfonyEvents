@@ -54,7 +54,7 @@ class EventController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function createProcess(Request $request)
+    public function getLastAdded(Request $request)
     {
         $event = new Event();
         $event->setAuthor($this->getUser());
@@ -62,8 +62,10 @@ class EventController extends Controller
         $form->handleRequest($request);
         $this->eventService->save($event);
 
-        return $this->render("events/added_event.html.twig",
-            ['event' => $event]);
+        return $this->render('events/added_event.html.twig',
+            [
+                'event' => $this->eventService->getLast()
+            ]);
     }
 
     /**
@@ -135,7 +137,7 @@ class EventController extends Controller
             $em->remove($event);
             $em->flush();
 
-            return $this->redirectToRoute("my_events");
+            return $this->redirectToRoute("delete_event");
         }
 
         $categoryRepository = $this

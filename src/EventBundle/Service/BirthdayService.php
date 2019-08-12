@@ -46,6 +46,11 @@ class BirthdayService implements BirthdayServiceInterface
         $this->entityManager->flush();
     }
 
+    public function getLast(): Birthday
+    {
+        return $this->birthdayRepository->findBy([], ['id' => 'DESC'])[0];
+    }
+
     public function get(int $id): Birthday
     {
         return $this->birthdayRepository->find($id);

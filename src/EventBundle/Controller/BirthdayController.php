@@ -58,22 +58,21 @@ class BirthdayController extends Controller
     /**
      * @Route("/added_birthday", name="added_birthday")
      *
-     * @return Response
      * @param Request $request
+     * @return Response
      */
-    public function createProcess(Request $request)
+    public function getLastAdded(Request $request)
     {
-
         $birthday = new Birthday();
         $birthday->setAuthor($this->getUser());
         $form = $this->createForm(BirthdayType::class, $birthday);
         $form->handleRequest($request);
         $this->birthdayService->save($birthday);
 
-        $birthdays = $this->getDoctrine()->getRepository(Birthday::class)->findAll();
-
         return $this->render( "birthdays/added_birthday.html.twig",
-            ['birthdays' => $birthdays]);
+            [
+                'birthday' => $this->birthdayService->getLast()
+            ]);
 
     }
 
@@ -139,7 +138,7 @@ class BirthdayController extends Controller
             $em->remove($birthday);
             $em->flush();
 
-            return $this->redirectToRoute("my_birthdays");
+            return $this->redirectToRoute("delete_birthday");
         }
 
         return $this->render("birthdays/delete_birthday.html.twig",

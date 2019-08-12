@@ -40,13 +40,14 @@ class EventService implements EventServiceInterface
         return $this->eventRepository->findAll();
     }
 
-    /**
-     * @param int $id
-     * @return Event
-     */
-    public function lastEvent(int $id): Event
+    public function get(int $id): Event
     {
-       return $this->eventRepository->find($id);
+        // TODO: Implement get() method.
+    }
+
+    public function getLast(): Event
+    {
+        return $this->eventRepository->findBy([], ['id' => 'DESC'])[0];
     }
 
     public function save(Event $event)
@@ -55,9 +56,4 @@ class EventService implements EventServiceInterface
         $this->entityManager->flush();
     }
 
-
-    public function get(int $id): Event
-    {
-        // TODO: Implement get() method.
-    }
 }

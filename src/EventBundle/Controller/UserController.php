@@ -7,13 +7,15 @@ use EventBundle\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
+
     /**
      * @Route("register", name="user_register")
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function register(Request $request)
     {
@@ -25,6 +27,7 @@ class UserController extends Controller
                 $this->get('security.password_encoder')
                     ->encodePassword($user, $user->getPassword());
             $user->setPassword($passwordHash);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();

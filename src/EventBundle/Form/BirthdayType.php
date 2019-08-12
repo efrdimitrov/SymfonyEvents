@@ -22,8 +22,7 @@ class BirthdayType extends AbstractType
                 'widget' => 'single_text',
                 // this is actually the default format for single_text
                 'format' => 'yyyy-MM-dd'
-            ])
-            ->add('years', DateType::class);
+            ]);
     }
 
     /**

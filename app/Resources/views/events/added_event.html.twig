@@ -9,16 +9,16 @@
             <br/>
             <div class="table-condensed">
                 <div class="navbar-header">
-                    <div>Name: </div>
-                    <div>Category: </div>
-                    <div>Description: </div>
-                    <div>Date: </div>
+                    <div class="navbar-form">Name: </div>
+                    <div class="navbar-form">Category: </div>
+                    <div class="navbar-form">Description: </div>
+                    <div class="navbar-form">Date: </div>
                 </div>
                 <div class="navbar-header">
-                    <div>{{ event.name }}</div>
-                    <div>{{ event.categoryName }}</div>
-                    <div>{{ event.description }}</div>
-                    <div>{{ event.dateEvent|date('d.m.Y') }}</div>
+                    <div class="navbar-form">{{ event.name }}</div>
+                    <div class="navbar-form">{{ event.categoryName }}</div>
+                    <div class="navbar-form">{{ event.description }}</div>
+                    <div class="navbar-form">{{ event.dateEvent|date('d.m.Y') }}</div>
                 </div>
             </div>
         </div>
