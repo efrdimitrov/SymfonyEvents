@@ -120,7 +120,7 @@ class EventController extends Controller
     }
 
     /**
-     * @Route("/delete/{id}", name="delete_event")
+     * @Route("/delete_event/{id}", name="delete_event")
      *
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @param Request $request
@@ -137,7 +137,7 @@ class EventController extends Controller
             $em->remove($event);
             $em->flush();
 
-            return $this->redirectToRoute("delete_event");
+            return $this->redirectToRoute("my_events");
         }
 
         $categoryRepository = $this
@@ -146,7 +146,7 @@ class EventController extends Controller
 
         $categories = $categoryRepository->findAll();
 
-        return $this->render('events/edit_event.html.twig',
+        return $this->render('events/delete_event.html.twig',
             [
                 'form' => $form->createView(),
                 'event' => $event,

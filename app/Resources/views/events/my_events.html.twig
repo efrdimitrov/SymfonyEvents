@@ -8,10 +8,10 @@
             <table class="table-striped">
                 <thead>
                 <tr>
-                    <td>Name</td>
-                    <td>Category</td>
-                    <td>Description</td>
-                    <td>Date</td>
+                    <td class="navbar-form">Name</td>
+                    <td class="navbar-form">Category</td>
+                    <td class="navbar-form">Description</td>
+                    <td class="navbar-form">Date</td>
                     <td>Edit</td>
                     <td>Delete</td>
                 </tr>
@@ -19,10 +19,10 @@
                 <tbody>
                 {% for event in events %}
                     <tr>
-                        <td>{{ event.name }}</td>
-                        <td>{{ event.categoryName }}</td>
-                        <td>{{ event.description }}</td>
-                        <td>{{ event.dateEvent|date('d.m.Y') }}</td>
+                        <td class="navbar-form">{{ event.name }}</td>
+                        <td class="navbar-form">{{ event.categoryName }}</td>
+                        <td class="navbar-form">{{ event.description }}</td>
+                        <td class="navbar-form">{{ event.dateEvent|date('d.m.Y') }}</td>
                         <td><a class="btn btn-success bnt-xs" href="{{ path('edit_event', {id: event.id}) }}">Edit</a>
                         </td>
                         <td><a class="btn btn-danger bnt-xs"

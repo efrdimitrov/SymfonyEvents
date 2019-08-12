@@ -4,13 +4,15 @@
 
     <div class="container body-content span=8 offset=2">
         <div class="well">
-            <form name="authenticate" class="form-horizontal" action="{{ path('edit_event', {id: event.id}) }}" method="post">
+            <form name="authenticate" class="form-horizontal" action="{{ path('edit_event', {id: event.id}) }}"
+                  method="post">
                 <fieldset>
                     <legend>Edit Event</legend>
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="event_name">Name</label>
                         <div class="col-sm-4 ">
-                            <input value="{{ event.name }}" class="form-control" id="event_name" placeholder="Name" name="event[name]">
+                            <input value="{{ event.name }}" class="form-control" id="event_name" placeholder="Name"
+                                   name="event[name]">
                         </div>
                     </div>
 
@@ -18,7 +20,11 @@
                         <label class="col-sm-4 control-label" for="category">Category
                             <select name="event[categoryName]">
                                 {% for category in categories %}
-                                    <option>{{ category.name }}</option>
+                                    {% set selected = '' %}
+                                    {% if (category.name) == event.categoryName %}
+                                        {% set selected = 'selected' %}
+                                    {% endif %}
+                                    <option value="{{ category.name }}" {{ selected }}>{{ category.name }}</option>
                                 {% endfor %}
                             </select>
                         </label>
@@ -27,14 +33,16 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="description">Description</label>
                         <div class="col-sm-4">
-                            <textarea class="form-control" id="description" name="event[description]">{{ event.description }}</textarea>
+                            <textarea class="form-control" id="description"
+                                      name="event[description]">{{ event.description }}</textarea>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="event_date">Date</label>
                         <div class="col-sm-4 ">
-                            <input value="{{ event.dateEvent|date('d.m.Y') }}" type="date" class="form-control" id="event_date" placeholder="Name"
+                            <input value="{{ event.dateEvent|date('Y-m-d')}}"  class="form-control"
+                                   id="event_date" placeholder="Name"
                                    name="event[dateEvent]">
                         </div>
                     </div>
@@ -42,7 +50,7 @@
                     <div class="form-group">
                         <div class="col-sm-4 col-sm-offset-4">
                             <a class="btn btn-default" href="{{ path('my_events') }}">Cancel</a>
-                            <button type="submit" class="btn btn-primary">Add</button>
+                            <button type="submit" class="btn btn-primary">Edit</button>
                         </div>
                     </div>
 
