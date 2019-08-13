@@ -28,26 +28,38 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
                         {% if app.user %}
-                            <li>
-                                <a href="{{ path('create_event') }}" class="navbar-brand">
-                                    Create Event
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ path('create_birthday') }}" class="navbar-brand">
-                                    Create Birthday
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ path('user_profile') }}" class="navbar-brand">
-                                    My Profile
-                                </a>
-                            </li>
+
+                            {% if app.request.attributes.get('_route') != 'create_event' %}
+                                <li>
+                                    <a href="{{ path('create_event') }}" class="navbar-brand">
+                                        Create Event
+                                    </a>
+                                </li>
+                            {% endif %}
+
+                            {% if app.request.attributes.get('_route') != 'create_birthday' %}
+                                <li>
+                                    <a href="{{ path('create_birthday') }}" class="navbar-brand">
+                                        Create Birthday
+                                    </a>
+                                </li>
+                            {% endif %}
+
+                            {% if app.request.attributes.get('_route') != 'user_profile' %}
+                                <li>
+                                    <a href="{{ path('user_profile') }}" class="navbar-brand">
+                                        My Profile
+                                    </a>
+                                </li>
+                            {% endif %}
+
+
                             <li>
                                 <a href="{{ path('security_logout') }}" class="navbar-brand">
                                     Logout
                                 </a>
                             </li>
+
                         {% else %}
                             <li>
                                 <a href="{{ path('user_register') }}">
