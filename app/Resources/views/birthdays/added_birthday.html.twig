@@ -10,12 +10,14 @@
                     <br/>
                     <div class="table-condensed">
                         <div class="navbar-header">
-                            <div>Name: </div>
-                            <div>Born On: </div>
+                            <div class="navbar-form">Name: </div>
+                            <div class="navbar-form">Born On: </div>
+                            <div class="navbar-form">Age: </div>
                         </div>
                         <div class="navbar-header">
-                            <div>{{ birthday.name }}</div>
-                            <div>{{ birthday.bornOn|date('Y-m-d') }}</div>
+                            <div class="navbar-form">{{ birthday.name }}</div>
+                            <div class="navbar-form">{{ birthday.bornOn|date('d.m.Y') }}</div>
+                            <div class="navbar-form">{{ birthday.years }}</div>
                         </div>
                     </div>
                 </div>
