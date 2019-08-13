@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class UserController extends Controller
 {
@@ -23,10 +24,7 @@ class UserController extends Controller
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
-            $passwordHash =
-                $this->get('security.password_encoder')
-                    ->encodePassword($user, $user->getPassword());
-            $user->setPassword($passwordHash);
+            $this->passwordHash($user);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
@@ -55,7 +53,9 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/edit_profile", name="edit_profile")
+     * @Route("/edit_profile/{id}", name="edit_profile")
+     *
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @param Request $request
      * @param User $user
      * @return Response
@@ -66,6 +66,8 @@ class UserController extends Controller
         $form->handleRequest($request);
 
         if($form->isSubmitted()){
+            $this->passwordHash($user);
+
             $em = $this->getDoctrine()->getManager();
             $em->merge($user);
             $em->flush();
@@ -76,7 +78,7 @@ class UserController extends Controller
         return $this->render("users/edit_profile.html.twig",
             [
                 'form' => $form->createView(),
-                'user' => $user,
+                'user' => $user
             ]);
     }
 
@@ -87,5 +89,16 @@ class UserController extends Controller
     public function logout()
     {
         throw new \Exception("Logout failed!");
+    }
+
+    /**
+     * @param User $user
+     */
+    public function passwordHash(User $user): void
+    {
+        $passwordHash =
+            $this->get('security.password_encoder')
+                ->encodePassword($user, $user->getPassword());
+        $user->setPassword($passwordHash);
     }
 }

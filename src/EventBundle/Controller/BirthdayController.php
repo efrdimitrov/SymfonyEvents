@@ -28,36 +28,23 @@ class BirthdayController extends Controller
     }
 
     /**
-     * @Route("/create_birthday", name="create_birthday")
+     * @Route("/create_birthday", name="create_birthday", methods={"GET"})
      *
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
-     * @param Request $request
      * @return Response
      */
-    public function crete(Request $request)
+    public function crete()
     {
-        $birthday = new Birthday();
-        $form = $this->createForm(BirthdayType::class, $birthday);
-        $form->handleRequest($request);
-
-        if($form->isSubmitted() && $form->isValid()){
-            $birthday->setAuthor($this->getUser());
-            $em = $this
-                ->getDoctrine()
-                ->getManager();
-            $em->persist($birthday);
-            $em->flush();
-
-            return $this->redirectToRoute("all_birthdays");
-        }
+        $form = $this->createForm(BirthdayType::class);
 
         return $this->render('birthdays/create_birthday.html.twig',
             ['form' => $form->createView()]);
     }
 
     /**
-     * @Route("/added_birthday", name="added_birthday")
+     * @Route("/added_birthday", name="added_birthday", methods={"POST"})
      *
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @param Request $request
      * @return Response
      */

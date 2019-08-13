@@ -1,15 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-    <h3> Hello: {{ user.username }} </h3>
-
-    <h3>Email: {{ user.email }} </h3>
 
     <div>
-        <a href="{{ path('edit_profile') }}" class="navbar-brand">
+        <a href="{{ path('edit_profile', {id: user.id}) }}" class="navbar-brand">
             Edit Profile
         </a>
     </div>
+<br />
+<br />
+    <h3> Hello: {{ user.username }} </h3>
+
+    <h3>Email: {{ user.email }} </h3>
 
     <div>
         <a href="{{ path('create_event') }}" class="navbar-brand">
