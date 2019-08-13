@@ -34,7 +34,7 @@
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="event_date">Date</label>
                     <div class="col-sm-4 ">
-                        <input value="{{ event.dateEvent|date('d.m.Y') }}" type="date" class="form-control" id="event_date" placeholder="Name"
+                        <input value="{{ event.dateEvent|date('Y-m-d') }}" type="date" class="form-control" id="event_date" placeholder="Name"
                                name="event[dateEvent]">
                     </div>
                 </div>

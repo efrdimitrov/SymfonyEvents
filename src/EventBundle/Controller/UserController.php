@@ -55,6 +55,32 @@ class UserController extends Controller
     }
 
     /**
+     * @Route("/edit_profile", name="edit_profile")
+     * @param Request $request
+     * @param User $user
+     * @return Response
+     */
+    public function edit(Request $request, User $user)
+    {
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted()){
+            $em = $this->getDoctrine()->getManager();
+            $em->merge($user);
+            $em->flush();
+
+            return $this->redirectToRoute("user_profile");
+        }
+
+        return $this->render("users/edit_profile.html.twig",
+            [
+                'form' => $form->createView(),
+                'user' => $user,
+            ]);
+    }
+
+    /**
      * @Route("/logout", name="security_logout")
      * @throws \Exception
      */

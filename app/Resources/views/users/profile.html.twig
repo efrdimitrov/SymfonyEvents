@@ -6,6 +6,12 @@
     <h3>Email: {{ user.email }} </h3>
 
     <div>
+        <a href="{{ path('edit_profile') }}" class="navbar-brand">
+            Edit Profile
+        </a>
+    </div>
+
+    <div>
         <a href="{{ path('create_event') }}" class="navbar-brand">
             Add New Event
         </a>

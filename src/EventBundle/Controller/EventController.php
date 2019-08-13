@@ -30,7 +30,7 @@ class EventController extends Controller
 
 
     /**
-     * @Route("/create_event", name="create_event")
+     * @Route("/create_event", name="create_event", methods={"GET"})
      *
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @return Response
@@ -49,8 +49,9 @@ class EventController extends Controller
     }
 
     /**
-     * @Route("/added_event", name="added_event")
+     * @Route("/added_event", name="added_event", methods={"POST"})
      *
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @param Request $request
      * @return Response
      */

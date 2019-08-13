@@ -1,7 +1,6 @@
-
 {% extends 'base.html.twig' %}
 
-{% block body_id 'register' %}
+{% block body_id 'edit_profile' %}
 
 {% block main %}
 
@@ -13,13 +12,13 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="user_fullName">Username</label>
                         <div class="col-sm-4 ">
-                            <input class="form-control" id="user_fullName" placeholder="Username" name="user[username]" required type="text">
+                            <input value="{{ user.username }}" class="form-control" id="user_fullName" placeholder="Username" name="user[username]" required type="text">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="user_email">Email</label>
                         <div class="col-sm-4 ">
-                            <input type="text" class="form-control" id="user_email" placeholder="Email" name="user[email]" required>
+                            <input value="{{ user.email }}" type="text" class="form-control" id="user_email" placeholder="Email" name="user[email]" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -47,4 +46,8 @@
         </div>
     </div>
 
-{% endblock %}	 
+{% endblock %}
+
+
+{% endblock %}
+
