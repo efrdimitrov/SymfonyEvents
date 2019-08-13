@@ -138,7 +138,7 @@ class BirthdayController extends Controller
             $em->remove($birthday);
             $em->flush();
 
-            return $this->redirectToRoute("delete_birthday");
+            return $this->redirectToRoute("my_birthdays");
         }
 
         return $this->render("birthdays/delete_birthday.html.twig",

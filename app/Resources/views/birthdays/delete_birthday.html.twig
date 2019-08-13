@@ -17,7 +17,7 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="event_date">Born On</label>
                         <div class="col-sm-4 ">
-                            <input value="{{ birthday.bornOn|date('yyyy-MM-dd') }}" type="date" class="form-control" id="event_date" placeholder="Date"
+                            <input value="{{ birthday.bornOn|date('Y-m-d') }}" type="date" class="form-control" id="event_date" placeholder="Date"
                                    name="birthday[bornOn]">
                         </div>
                     </div>
