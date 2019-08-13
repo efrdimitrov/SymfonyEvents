@@ -93,8 +93,9 @@ class UserController extends Controller
 
     /**
      * @param User $user
+     * @return bool
      */
-    public function passwordHash(User $user): void
+    public function passwordHash(User $user): bool
     {
         $passwordHash =
             $this->get('security.password_encoder')

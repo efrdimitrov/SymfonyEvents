@@ -58,10 +58,12 @@ class EventController extends Controller
     public function getLastAdded(Request $request)
     {
         $event = new Event();
-        $event->setAuthor($this->getUser());
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
+
         $this->eventService->save($event);
+
+        $event->setAuthor($this->getUser());
 
         return $this->render('events/added_event.html.twig',
             [
