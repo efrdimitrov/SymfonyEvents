@@ -25,45 +25,39 @@ class User implements UserInterface
      * @ORM\Column(name="username", type="string",length=255)
      */
     private $username;
-
     public function __toString()
     {
         return $this->getUsername();
     }
+
     /**
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255)
      */
     private $password;
+
     /**
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, unique=true)
      */
     private $email;
+
     /**
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="EventBundle\Entity\Event", mappedBy="author")
      */
     private $events;
+
     /**
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="EventBundle\Entity\Birthday", mappedBy="author")
      */
     private $birthdays;
-//    /**
-//     * User constructor.
-//     * @param ArrayCollection $events
-//     * @param ArrayCollection $birthdays
-//     */
-//    public function __construct(ArrayCollection $events, ArrayCollection $birthdays)
-//    {
-//        $this->events = $events;
-//        $this->birthdays = $birthdays;
-//    }
+
     /**
      * @return mixed
      */
@@ -71,6 +65,7 @@ class User implements UserInterface
     {
         return $this->id;
     }
+
     /**
      * @param mixed $id
      */
@@ -78,6 +73,7 @@ class User implements UserInterface
     {
         $this->id = $id;
     }
+
     /**
      * @var User
      * @return mixed
@@ -86,16 +82,17 @@ class User implements UserInterface
     {
         return $this->username;
     }
-
     /**
      * @param string $username
      * @return $this
      */
+
     public function setUsername(string $username)
     {
         $this->username = $username;
         return $this;
     }
+
     /**
      * @return mixed
      */
@@ -103,6 +100,7 @@ class User implements UserInterface
     {
         return $this->password;
     }
+
     /**
      * @param mixed $password
      */
@@ -110,6 +108,7 @@ class User implements UserInterface
     {
         $this->password = $password;
     }
+
     /**
      * @return mixed
      */
@@ -117,6 +116,7 @@ class User implements UserInterface
     {
         return $this->email;
     }
+
     /**
      * @param mixed $email
      */
@@ -124,6 +124,7 @@ class User implements UserInterface
     {
         $this->email = $email;
     }
+
     /**
      * @return ArrayCollection
      */
@@ -131,6 +132,7 @@ class User implements UserInterface
     {
         return $this->events;
     }
+
     /**
      * @param Event $event
      * @return User
@@ -140,6 +142,7 @@ class User implements UserInterface
         $this->events[] = $event;
         return $this;
     }
+
     /**
      * @return ArrayCollection
      */
@@ -147,6 +150,7 @@ class User implements UserInterface
     {
         return $this->birthdays;
     }
+
     /**
      * @param Birthday $birthday
      * @return User
@@ -156,6 +160,16 @@ class User implements UserInterface
         $this->birthdays[] = $birthday;
         return $this;
     }
+
+    /**
+     * @param Event $event
+     * @return bool
+     */
+    public function isAuthor(Event $event)
+    {
+        return $event->getAuthor()->getId() === $this->getId();
+    }
+
     /**
      * Returns the roles granted to the user.
      *

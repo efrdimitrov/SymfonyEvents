@@ -1,9 +1,8 @@
 <?php
-
 namespace EventBundle\Controller;
-
 use EventBundle\Entity\Category;
 use EventBundle\Entity\Event;
+use EventBundle\Entity\User;
 use EventBundle\Form\EventType;
 use EventBundle\Service\EventServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -11,14 +10,12 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-
 class EventController extends Controller
 {
     /**
      * @var EventServiceInterface
      */
     private $eventService;
-
     /**
      * EventController constructor.
      * @param EventServiceInterface $eventService
@@ -27,50 +24,39 @@ class EventController extends Controller
     {
         $this->eventService = $eventService;
     }
-
-
     /**
-     * @Route("/create_event", name="create_event", methods={"GET"})
+     * @Route("/create_event", name="create_event")
      *
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @return Response
      */
     public function create()
     {
-
         $categoryRepository = $this
             ->getDoctrine()
             ->getRepository(Category::class);
-
         $categories = $categoryRepository->findAll();
-
         return $this->render("events/create_event.html.twig",
-                ['categories' => $categories]);
+            ['categories' => $categories]);
     }
-
     /**
-     * @Route("/added_event", name="added_event", methods={"POST"})
+     * @Route("/added_event", name="added_event")
      *
-     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @param Request $request
      * @return Response
      */
     public function getLastAdded(Request $request)
     {
         $event = new Event();
+        $event->setAuthor($this->getUser());
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
-
         $this->eventService->save($event);
-
-        $event->setAuthor($this->getUser());
-
         return $this->render('events/added_event.html.twig',
             [
                 'event' => $this->eventService->getLast()
             ]);
     }
-
     /**
      * @Route("/my_events", name="my_events")
      *
@@ -82,7 +68,6 @@ class EventController extends Controller
             ->getDoctrine()
             ->getRepository(Event::class)
             ->findBy(['author' => $this->getUser()]);
-
         return $this->render("events/my_events.html.twig",
             ['events' => $events]);
     }
@@ -93,27 +78,39 @@ class EventController extends Controller
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @param Request $request
      * @param Event $event
+     * @param int $id
      * @return Response
      */
-    public function edit(Request $request, Event $event)
+    public function edit(Request $request, int $id)
     {
+        $event = $this
+            ->getDoctrine()
+            ->getRepository(Event::class)
+            ->find($id);
+
+        if(null === $event){
+            return $this->redirectToRoute("my_events");
+        }
+
+        /** @var User $currentUser */
+        $currentUser = $this->getUser();
+
+        if(!$currentUser->isAuthor($event)){
+            return $this->redirectToRoute("my_events");
+        }
+
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
-
         if($form->isSubmitted()){
             $em = $this->getDoctrine()->getManager();
             $em->merge($event);
             $em->flush();
-
             return $this->redirectToRoute("my_events");
         }
-
         $categoryRepository = $this
             ->getDoctrine()
             ->getRepository(Category::class);
-
         $categories = $categoryRepository->findAll();
-
         return $this->render('events/edit_event.html.twig',
             [
                 'form' => $form->createView(),
@@ -121,7 +118,6 @@ class EventController extends Controller
                 'categories' => $categories
             ]);
     }
-
     /**
      * @Route("/delete_event/{id}", name="delete_event")
      *
@@ -134,21 +130,16 @@ class EventController extends Controller
     {
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
-
         if($form->isSubmitted()){
             $em = $this->getDoctrine()->getManager();
             $em->remove($event);
             $em->flush();
-
             return $this->redirectToRoute("my_events");
         }
-
         $categoryRepository = $this
             ->getDoctrine()
             ->getRepository(Category::class);
-
         $categories = $categoryRepository->findAll();
-
         return $this->render('events/delete_event.html.twig',
             [
                 'form' => $form->createView(),
@@ -156,5 +147,4 @@ class EventController extends Controller
                 'categories' => $categories
             ]);
     }
-
 }
