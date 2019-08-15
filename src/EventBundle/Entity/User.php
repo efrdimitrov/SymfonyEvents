@@ -165,9 +165,18 @@ class User implements UserInterface
      * @param Event $event
      * @return bool
      */
-    public function isAuthor(Event $event)
+    public function isAuthorEvent(Event $event)
     {
         return $event->getAuthor()->getId() === $this->getId();
+    }
+
+    /**
+     * @param Birthday $birthday
+     * @return bool
+     */
+    public function isAuthorBirthday(Birthday $birthday)
+    {
+        return $birthday->getAuthor()->getId() === $this->getId();
     }
 
     /**

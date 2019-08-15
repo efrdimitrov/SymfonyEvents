@@ -7,6 +7,7 @@
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/dropdown.css') }}">
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 </head>
@@ -29,36 +30,29 @@
                     <ul class="nav navbar-nav navbar-right">
                         {% if app.user %}
 
-                            {% if app.request.attributes.get('_route') != 'create_event' %}
-                                <li>
-                                    <a href="{{ path('create_event') }}" class="navbar-brand">
-                                        Create Event
-                                    </a>
+                                <li class="news"><a href="{{ path('my_events') }}">Events</a>
+                                    <ul>
+                                        <li><a href="{{ path('create_event') }}">New Events</a></li>
+                                        <li><a href="{{ path('my_events') }}">My Events</a></li>
+                                    </ul>
                                 </li>
-                            {% endif %}
 
-                            {% if app.request.attributes.get('_route') != 'create_birthday' %}
-                                <li>
-                                    <a href="{{ path('create_birthday') }}" class="navbar-brand">
-                                        Create Birthday
-                                    </a>
-                                </li>
-                            {% endif %}
-
-                            {% if app.request.attributes.get('_route') != 'user_profile' %}
-                                <li>
-                                    <a href="{{ path('user_profile') }}" class="navbar-brand">
-                                        My Profile
-                                    </a>
-                                </li>
-                            {% endif %}
-
-
-                            <li>
-                                <a href="{{ path('security_logout') }}" class="navbar-brand">
-                                    Logout
-                                </a>
+                            <li class="news"><a href="{{ path('my_birthdays') }}">Birthdays</a>
+                                <ul>
+                                    <li><a href="{{ path('create_birthday') }}">New Events</a></li>
+                                    <li><a href="{{ path('my_birthdays') }}">My Events</a></li>
+                                </ul>
                             </li>
+
+                            <li class="news"><a href="{{ path('user_profile') }}">Profile</a>
+                                <ul>
+                                    <li><a href="{{ path('edit_profile', {id: app.user.id}) }}">Edit Profile</a></li>
+                                    <li><a href="{{ path('delete_profile', {id: app.user.id}) }}">Delete Profile</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="{{ path('security_login') }}">Logout</a> </li>
+
 
                         {% else %}
                             <li>

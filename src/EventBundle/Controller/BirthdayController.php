@@ -3,6 +3,7 @@
 namespace EventBundle\Controller;
 
 use EventBundle\Entity\Birthday;
+use EventBundle\Entity\User;
 use EventBundle\Form\BirthdayType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -84,11 +85,20 @@ class BirthdayController extends Controller
      *
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @param Request $request
-     * @param Birthday $birthday
+     * @param int $id
      * @return Response
      */
-    public function edit(Request $request, Birthday $birthday)
+    public function edit(Request $request, int $id)
     {
+        $birthday = $this->getBirthdayValid($id);
+
+        /** @var User $currentUser */
+        $currentUser = $this->getUser();
+
+        if(null === $birthday || !$currentUser->isAuthorBirthday($birthday)){
+            return $this->redirectToRoute("my_birthdays");
+        }
+
         $form = $this->createForm(BirthdayType::class, $birthday);
         $form->handleRequest($request);
 
@@ -112,11 +122,20 @@ class BirthdayController extends Controller
      *
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @param Request $request
-     * @param Birthday $birthday
+     * @param int $id
      * @return Response
      */
-    public function delete(Request $request, Birthday $birthday)
+    public function delete(Request $request, int $id)
     {
+        $birthday = $this->getBirthdayValid($id);
+
+        /** @var User $currentUser */
+        $currentUser = $this->getUser();
+
+        if(null === $birthday || !$currentUser->isAuthorBirthday($birthday)){
+            return $this->redirectToRoute("my_birthdays");
+        }
+
         $form = $this->createForm(BirthdayType::class, $birthday);
         $form->handleRequest($request);
 
@@ -133,5 +152,18 @@ class BirthdayController extends Controller
                 'form' => $form->createView(),
                 'birthday' => $birthday
             ]);
+    }
+
+    /**
+     * @param int $id
+     * @return object|null
+     */
+    public function getBirthdayValid(int $id)
+    {
+        $birthday = $this
+            ->getDoctrine()
+            ->getRepository(Birthday::class)
+            ->find($id);
+        return $birthday;
     }
 }

@@ -77,25 +77,17 @@ class EventController extends Controller
      *
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @param Request $request
-     * @param Event $event
      * @param int $id
      * @return Response
      */
     public function edit(Request $request, int $id)
     {
-        $event = $this
-            ->getDoctrine()
-            ->getRepository(Event::class)
-            ->find($id);
-
-        if(null === $event){
-            return $this->redirectToRoute("my_events");
-        }
+        $event = $this->getEventValid($id);
 
         /** @var User $currentUser */
         $currentUser = $this->getUser();
 
-        if(!$currentUser->isAuthor($event)){
+        if(null === $event || !$currentUser->isAuthorEvent($event)){
             return $this->redirectToRoute("my_events");
         }
 
@@ -118,22 +110,33 @@ class EventController extends Controller
                 'categories' => $categories
             ]);
     }
+
     /**
      * @Route("/delete_event/{id}", name="delete_event")
      *
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @param Request $request
-     * @param Event $event
+     * @param int $id
      * @return Response
      */
-    public function delete(Request $request, Event $event)
+    public function delete(Request $request, int $id)
     {
+        $event = $this->getEventValid($id);
+
+        /** @var User $currentUser */
+        $currentUser = $this->getUser();
+
+        if(null === $event || !$currentUser->isAuthorEvent($event)){
+            return $this->redirectToRoute("my_events");
+        }
+
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
         if($form->isSubmitted()){
             $em = $this->getDoctrine()->getManager();
             $em->remove($event);
             $em->flush();
+
             return $this->redirectToRoute("my_events");
         }
         $categoryRepository = $this
@@ -146,5 +149,18 @@ class EventController extends Controller
                 'event' => $event,
                 'categories' => $categories
             ]);
+    }
+
+    /**
+     * @param int $id
+     * @return object|null
+     */
+    public function getEventValid(int $id)
+    {
+        $event = $this
+            ->getDoctrine()
+            ->getRepository(Event::class)
+            ->find($id);
+        return $event;
     }
 }

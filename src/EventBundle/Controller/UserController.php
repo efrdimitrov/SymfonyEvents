@@ -2,6 +2,7 @@
 
 namespace EventBundle\Controller;
 
+use EventBundle\Entity\Event;
 use EventBundle\Entity\User;
 use EventBundle\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -83,6 +84,34 @@ class UserController extends Controller
     }
 
     /**
+     * @Route("/delete_profile/{id}", name="delete_profile")
+     *
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     * @param Request $request
+     * @param User $user
+     * @return Response
+     */
+    public function delete(Request $request, User $user)
+    {
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted()){
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($user);
+            $em->flush();
+
+            return $this->redirectToRoute("security_login");
+        }
+
+        return $this->render("users/delete_user.html.twig",
+            [
+                'form' => $form->createView(),
+                'user' => $user
+            ]);
+    }
+
+    /**
      * @Route("/logout", name="security_logout")
      * @throws \Exception
      */
@@ -93,13 +122,12 @@ class UserController extends Controller
 
     /**
      * @param User $user
-     * @return bool
      */
-    public function passwordHash(User $user): bool
+    public function passwordHash(User $user)
     {
-        $passwordHash =
-            $this->get('security.password_encoder')
-                ->encodePassword($user, $user->getPassword());
+        $passwordHash = $this
+            ->get('security.password_encoder')
+            ->encodePassword($user, $user->getPassword());
         $user->setPassword($passwordHash);
     }
 }
