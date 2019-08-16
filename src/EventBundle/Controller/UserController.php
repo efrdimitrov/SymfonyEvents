@@ -2,7 +2,6 @@
 
 namespace EventBundle\Controller;
 
-use EventBundle\Entity\Event;
 use EventBundle\Entity\User;
 use EventBundle\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -13,7 +12,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class UserController extends Controller
 {
-
     /**
      * @Route("register", name="user_register")
      * @param Request $request
@@ -25,19 +23,20 @@ class UserController extends Controller
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
-            $this->passwordHash($user);
-
+            $passwordHash =
+                $this->get('security.password_encoder')
+                    ->encodePassword($user, $user->getPassword());
+            $user->setPassword($passwordHash);
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
-
             return $this->redirectToRoute("security_login");
         }
-
         return $this->render('users/register.html.twig', [
             'form' => $form->createView()
         ]);
     }
+
 
     /**
      * @Route("/profile", name="user_profile")
@@ -66,7 +65,7 @@ class UserController extends Controller
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
-        if($form->isSubmitted()){
+        if ($form->isSubmitted()) {
             $this->passwordHash($user);
 
             $em = $this->getDoctrine()->getManager();
@@ -96,12 +95,12 @@ class UserController extends Controller
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
-        if($form->isSubmitted()){
+        if ($form->isSubmitted()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($user);
             $em->flush();
 
-            return $this->redirectToRoute("security_login");
+            return $this->redirectToRoute("security_logout");
         }
 
         return $this->render("users/delete_user.html.twig",

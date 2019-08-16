@@ -39,8 +39,8 @@
 
                             <li class="news"><a href="{{ path('my_birthdays') }}">Birthdays</a>
                                 <ul>
-                                    <li><a href="{{ path('create_birthday') }}">New Events</a></li>
-                                    <li><a href="{{ path('my_birthdays') }}">My Events</a></li>
+                                    <li><a href="{{ path('create_birthday') }}">New Birthdays</a></li>
+                                    <li><a href="{{ path('my_birthdays') }}">My Birthdays</a></li>
                                 </ul>
                             </li>
 
@@ -51,7 +51,7 @@
                                 </ul>
                             </li>
 
-                            <li><a href="{{ path('security_login') }}">Logout</a> </li>
+                            <li><a href="{{ path('security_logout') }}">Logout</a> </li>
 
 
                         {% else %}
@@ -95,6 +95,20 @@
     <script src="{{ asset('js/moment.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script>
+        $(function(){
+            $('.datepicker').datepicker({
+                format: 'yyyy-mm-dd',
+                endDate: '+0d',
+                autoclose: true
+            });
+        });
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css">
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.js"></script>
+
+
 {% endblock %}
 
 </body>

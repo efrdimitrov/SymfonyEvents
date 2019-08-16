@@ -4,7 +4,7 @@
 
     <div class="container body-content span=8 offset=2">
         <div class="well">
-            <form name="authenticate" class="form-horizontal" action="{{ path('my_events') }}" method="post">
+            <form name="authenticate" class="form-horizontal" action="{{ path('delete_birthday', {id: birthday.id}) }}" method="post">
                 <fieldset>
                     <legend>Delete Birthday</legend>
                     <div class="form-group">

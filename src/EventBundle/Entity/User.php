@@ -3,12 +3,14 @@ namespace EventBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+
 /**
  * User
  *
  * @ORM\Table(name="users")
  * @ORM\Entity(repositoryClass="EventBundle\Repository\UserRepository")
  */
+
 class User implements UserInterface
 {
     /**
@@ -19,12 +21,14 @@ class User implements UserInterface
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
     /**
      * @var string
      *
      * @ORM\Column(name="username", type="string",length=255)
      */
     private $username;
+
     public function __toString()
     {
         return $this->getUsername();
