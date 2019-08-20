@@ -4,32 +4,27 @@ namespace EventBundle\Controller;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Security\Core\User\User;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends Controller
 {
     /**
      * @Route("/login", name="security_login")
      *
+     * @param AuthenticationUtils $authenticationUtils
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function login()
+    public function login(AuthenticationUtils $authenticationUtils)
     {
-        var_dump($this->login());
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
 
-//
-//        $em = $this->getDoctrine()->getManager();
-//        $allUsers = $em->getRepository(User::class)->findAll(array('username' => 'ASC'));
-//        if (in_array($user->getUsername(), $allUsers)) {
-//            $this->addFlash('exists_user', 'Username already exists!');
-//            return $this->redirectToRoute("user_register");
-//        }
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
 
-
-
-
-
-
-        return $this->render('security/login.html.twig');
+        return $this->render('security/login.html.twig', array(
+            'last_username' => $lastUsername,
+            'error'         => $error,
+        ));
     }
 }
