@@ -1,13 +1,25 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-    <h3> Hello: {{ user.username }} </h3>
+
+    <div>
+        <a href="{{ path('edit_profile', {id: user.id}) }}" class="navbar-brand">
+            Edit Profile
+        </a>
+
+        <a href="{{ path('delete_profile', {id: user.id}) }}" class="navbar-brand text-danger">
+            Delete Profile
+        </a>
+    </div>
+<br />
+<br />
+    <h3> Username: {{ user.username }} </h3>
 
     <h3>Email: {{ user.email }} </h3>
 
     <div>
         <a href="{{ path('create_event') }}" class="navbar-brand">
-            Add New Event
+            New Event
         </a>
     </div>
 
@@ -19,7 +31,7 @@
 
     <div>
         <a href="{{ path('create_birthday') }}" class="navbar-brand">
-            Add New Birthday
+            New Birthday
         </a>
     </div>
 

@@ -1,9 +1,6 @@
 <?php
-
 namespace EventBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Event
  *
@@ -20,43 +17,36 @@ class Event
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
-
     /**
      * @var string
      *
      * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
-
     /**
      * @var string
      *
      * @ORM\Column(name="category_name", type="string", length=255)
      */
     private $categoryName;
-
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_event", type="datetime")
      */
     private $dateEvent;
-
     /**
      * @var User
      *
      * @ORM\ManyToOne(targetEntity="EventBundle\Entity\User", inversedBy="events", cascade={"persist", "remove"})
      */
     private $author;
-
-
     /**
      * Get id
      *
@@ -66,7 +56,6 @@ class Event
     {
         return $this->id;
     }
-
     /**
      * Set name
      *
@@ -77,10 +66,8 @@ class Event
     public function setName($name)
     {
         $this->name = $name;
-
         return $this;
     }
-
     /**
      * Get name
      *
@@ -90,7 +77,6 @@ class Event
     {
         return $this->name;
     }
-
     /**
      * Set description
      *
@@ -101,10 +87,8 @@ class Event
     public function setDescription($description)
     {
         $this->description = $description;
-
         return $this;
     }
-
     /**
      * Get description
      *
@@ -114,7 +98,6 @@ class Event
     {
         return $this->description;
     }
-
     /**
      * Set categoryName
      *
@@ -125,10 +108,8 @@ class Event
     public function setCategoryName($categoryName)
     {
         $this->categoryName = $categoryName;
-
         return $this;
     }
-
     /**
      * Get categoryName
      *
@@ -138,7 +119,6 @@ class Event
     {
         return $this->categoryName;
     }
-
     /**
      * Set dateEvent
      *
@@ -149,10 +129,8 @@ class Event
     public function setDateEvent($dateEvent)
     {
         $this->dateEvent = $dateEvent;
-
         return $this;
     }
-
     /**
      * Get dateEvent
      *
@@ -162,7 +140,6 @@ class Event
     {
         return $this->dateEvent;
     }
-
     /**
      * @return User
      */
@@ -170,7 +147,6 @@ class Event
     {
         return $this->author;
     }
-
     /**
      * @param User $author
      */
@@ -178,9 +154,4 @@ class Event
     {
         $this->author = $author;
     }
-
-
-
-
 }
-

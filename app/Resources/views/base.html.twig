@@ -7,6 +7,7 @@
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/dropdown.css') }}">
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 </head>
@@ -28,26 +29,32 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
                         {% if app.user %}
-                            <li>
-                                <a href="{{ path('create_event') }}" class="navbar-brand">
-                                    Create Event
-                                </a>
+
+                            <li class="news"><a href="{{ path('my_events') }}">Events</a>
+                                <ul>
+                                    <li><a href="{{ path('create_event') }}">New Events</a></li>
+                                    <li><a href="{{ path('my_events') }}">My Events</a></li>
+                                </ul>
                             </li>
-                            <li>
-                                <a href="{{ path('create_birthday') }}" class="navbar-brand">
-                                    Create Birthday
-                                </a>
+
+                            <li class="news"><a href="{{ path('my_birthdays') }}">Birthdays</a>
+                                <ul>
+                                    <li><a href="{{ path('create_birthday') }}">New Birthdays</a></li>
+                                    <li><a href="{{ path('my_birthdays') }}">My Birthdays</a></li>
+                                </ul>
                             </li>
-                            <li>
-                                <a href="{{ path('user_profile') }}" class="navbar-brand">
-                                    My Profile
-                                </a>
+
+                            <li class="news"><a href="{{ path('user_profile') }}">Profile</a>
+                                <ul>
+                                    <li><a href="{{ path('edit_profile', {id: app.user.id}) }}">Edit Profile</a></li>
+                                    <li><a href="{{ path('delete_profile', {id: app.user.id}) }}">Delete Profile</a>
+                                    </li>
+                                </ul>
                             </li>
-                            <li>
-                                <a href="{{ path('security_logout') }}" class="navbar-brand">
-                                    Logout
-                                </a>
-                            </li>
+
+                            <li><a href="{{ path('security_logout') }}">Logout</a></li>
+
+
                         {% else %}
                             <li>
                                 <a href="{{ path('user_register') }}">
@@ -89,6 +96,25 @@
     <script src="{{ asset('js/moment.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script src="{{ asset('js/validRegisterForm.js') }}"></script>
+    <script>
+        $(function () {
+            $('.datepicker').datepicker({
+                format: 'yyyy-mm-dd',
+                endDate: '+0d',
+                autoclose: true
+            });
+        });
+    </script>
+
+    <link rel="stylesheet" type="text/css"
+          href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css">
+    <script type="text/javascript"
+            src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.js"></script>
+
+
+
+
 {% endblock %}
 
 </body>

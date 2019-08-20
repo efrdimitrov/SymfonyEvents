@@ -1,48 +1,68 @@
-
 {% extends 'base.html.twig' %}
 
 {% block body_id 'register' %}
 
 {% block main %}
+
     <div class="container body-content span=8 offset=2">
         <div class="well">
-            <form class="form-horizontal" action="{{ path('user_register') }}" method="post">
+
+
+            <form class="form-horizontal" method="POST" action="{{ path('user_register_process') }}"
+                  onsubmit="return Validate()" name="vform">
                 <fieldset>
-                    <legend>Register</legend>
-                    <div class="form-group">
+
+                    <legend>Register Form</legend>
+
+                    <div class="form-group" id="username_div">
+                        {% for message in app.flashes('exists_user') %}
+                            <div class="alert alert-danger">
+                            {{ message }}
+                        </div>
+                        {% endfor %}
                         <label class="col-sm-4 control-label" for="user_fullName">Username</label>
-                        <div class="col-sm-4 ">
-                            <input class="form-control" id="user_fullName" placeholder="Username" name="user[username]" required type="text">
-                        </div>
+                        <span id="name_error"></span>
+                        <input type="text" name="user[username]" class="form-control"
+                               placeholder="Minimum 3 characters" id="user_error">
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label" for="user_email">Email</label>
-                        <div class="col-sm-4 ">
-                            <input type="text" class="form-control" id="user_email" placeholder="Email" name="user[email]" required>
+
+                    <div class="form-group" id="email_div">
+                        {% for message in app.flashes('exists_email') %}
+                            <div class="alert alert-danger">
+                            {{ message }}
                         </div>
+                        {% endfor %}
+                        <label class="col-sm-4 control-label">Email</label>
+                        <span id="email_error"></span>
+                        <input type="text" name="user[email]" class="form-control" placeholder="Enter valid email"
+                               id="user_email">
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label" for="user_password_first">Password</label>
-                        <div class="col-sm-4">
-                            <input type="password" class="form-control" id="user_password_first" placeholder="Password" name="user[password][first]" required>
-                        </div>
+
+                    <div class="form-group" id="password_div">
+                        <label class="col-sm-4 control-label">Password</label>
+                        <span id="password_error"></span>
+                        <input type="password" name="user[password][first]" class="form-control"
+                               id="user_password_first">
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label" for="user_password_second">Confirm Password</label>
-                        <div class="col-sm-4">
-                            <input type="password" class="form-control" id="user_password_second" placeholder="Password" name="user[password][second]" required>
-                        </div>
+
+                    <div class="form-group" id="pass_confirm_div">
+                        <label class="col-sm-4 control-label">Password confirm</label>
+                        <span id="password_confirm_error"></span>
+                        <input type="password" name="user[password][second]" class="form-control"
+                               id="user_password_second">
                     </div>
+
                     <div class="form-group">
                         <div class="col-sm-4 col-sm-offset-4">
                             <a class="btn btn-default" href="{{ path('event_index') }}">Cancel</a>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <input type="submit" name="register" value="Register" class="btn btn-primary">
                         </div>
                     </div>
-
-                    {{  form_row(form._token) }}
+                    {{ form_row(form._token) }}
                 </fieldset>
             </form>
+
         </div>
     </div>
+
 {% endblock %}	 
