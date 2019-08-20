@@ -1,16 +1,19 @@
 <?php
+
 namespace EventBundle\Entity;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
  *
  * @ORM\Table(name="users")
  * @ORM\Entity(repositoryClass="EventBundle\Repository\UserRepository")
+ *
  */
-
 class User implements UserInterface
 {
     /**
@@ -79,13 +82,14 @@ class User implements UserInterface
     }
 
     /**
-     * @var User
      * @return mixed
+     * @var User
      */
     public function getUsername()
     {
         return $this->username;
     }
+
     /**
      * @param string $username
      * @return $this
@@ -201,6 +205,7 @@ class User implements UserInterface
     {
         return [];
     }
+
     /**
      * Returns the salt that was originally used to encode the password.
      *
@@ -212,6 +217,7 @@ class User implements UserInterface
     {
         // TODO: Implement getSalt() method.
     }
+
     /**
      * Removes sensitive data from the user.
      *

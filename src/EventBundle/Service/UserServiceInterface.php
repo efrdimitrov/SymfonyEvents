@@ -22,4 +22,5 @@ interface UserServiceInterface
      * @return mixed
      */
     public function save(User $user);
+
 }
