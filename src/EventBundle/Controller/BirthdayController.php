@@ -66,9 +66,14 @@ class BirthdayController extends Controller
         $form->handleRequest($request);
         $this->birthdayService->save($birthday);
 
+        $events = $this->eventsAuthor();
+        $birthdays = $this->birthdaysAuthor();
+
         return $this->render("birthdays/added_birthday.html.twig",
             [
-                'birthday' => $this->birthdayService->getLast()
+                'birthday' => $this->birthdayService->getLast(),
+                'events' => $events,
+                'birthdays' => $birthdays,
             ]);
 
     }
