@@ -68,9 +68,15 @@ class EventController extends Controller
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
         $this->eventService->save($event);
+
+        $events = $this->eventsAuthor();
+        $birthdays = $this->birthdaysAuthor();
+
         return $this->render('events/added_event.html.twig',
             [
-                'event' => $this->eventService->getLast()
+                'event' => $this->eventService->getLast(),
+                'events' => $events,
+                'birthdays' => $birthdays,
             ]);
     }
 
