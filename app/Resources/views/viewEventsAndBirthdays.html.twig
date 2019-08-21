@@ -1,0 +1,25 @@
+{% block body %}
+<div>
+    {% for event in events %}
+        <div>
+            {% if "now"|date('Y-m-d') == event.dateEvent|date('Y-m-d') %}
+                <div class="alert-info">event
+{{ event.name }} |
+{{ event.categoryName }} |
+{{ event.description }} |
+{{ "now"|date("d.m.Y") }}
+</div>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+    {% for birthday in birthdays %}
+        <div>
+            {% if "now"|date('m-d') == birthday.getBornOn|date('m-d') %}
+                <div class="alert-info">Happy Birthday: {{ birthday.name }}
+age {{ "now"|date('Y') - birthday.getBornOn|date('Y')}}({{birthday.getBornOn|date('d.m.Y') }})</div>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+{% endblock body %}
