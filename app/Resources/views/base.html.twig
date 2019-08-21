@@ -71,7 +71,12 @@
                 </div>
             </div>
         </div>
+        {% if app.user %}
+        {{ include('viewEventsAndBirthdays.html.twig') }}
+        {% endif %}
+
     </header>
+
 {% endblock %}
 
 <div class="container body-container">

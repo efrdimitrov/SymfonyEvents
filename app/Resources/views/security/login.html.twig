@@ -15,6 +15,9 @@
                             {{ message }}
                         </div>
                     {% endfor %}
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="user_email">Username</label>
                         <div class="col-sm-4 ">
@@ -31,7 +34,7 @@
                     <div class="form-group">
                         <div class="col-sm-4 col-sm-offset-4">
                             <a class="btn btn-default" href="{{ path('user_register') }}">Cancel</a>
-                            <button type="submit" class="btn btn-primary">Login</button>
+                            <button name="submit_login" type="submit" class="btn btn-primary">Login</button>
                         </div>
                     </div>
 
