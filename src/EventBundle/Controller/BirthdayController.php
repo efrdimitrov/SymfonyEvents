@@ -3,6 +3,7 @@
 namespace EventBundle\Controller;
 
 use EventBundle\Entity\Birthday;
+use EventBundle\Entity\Event;
 use EventBundle\Entity\User;
 use EventBundle\Form\BirthdayType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -36,10 +37,18 @@ class BirthdayController extends Controller
      */
     public function crete()
     {
+        $birthdays = $this->birthdaysAuthor();
+
+        $events = $this->eventsAuthor();
+
         $form = $this->createForm(BirthdayType::class);
 
         return $this->render('birthdays/create_birthday.html.twig',
-            ['form' => $form->createView()]);
+            [
+                'form' => $form->createView(),
+                'birthdays' => $birthdays,
+                'events' => $events,
+            ]);
     }
 
     /**
@@ -57,7 +66,7 @@ class BirthdayController extends Controller
         $form->handleRequest($request);
         $this->birthdayService->save($birthday);
 
-        return $this->render( "birthdays/added_birthday.html.twig",
+        return $this->render("birthdays/added_birthday.html.twig",
             [
                 'birthday' => $this->birthdayService->getLast()
             ]);
@@ -71,13 +80,15 @@ class BirthdayController extends Controller
      */
     public function myBirthdays()
     {
-        $birthdays = $this
-            ->getDoctrine()
-            ->getRepository(Birthday::class)
-            ->findBy(['author' => $this->getUser()]);
+        $birthdays = $this->birthdaysAuthor();
+
+        $events = $this->eventsAuthor();
 
         return $this->render("birthdays/my_birthdays.html.twig",
-            ['birthdays' => $birthdays]);
+            [
+                'birthdays' => $birthdays,
+                'events' => $events,
+            ]);
     }
 
     /**
@@ -92,17 +103,19 @@ class BirthdayController extends Controller
     {
         $birthday = $this->getBirthdayValid($id);
 
+        $events = $this->eventsAuthor();
+
         /** @var User $currentUser */
         $currentUser = $this->getUser();
 
-        if(null === $birthday || !$currentUser->isAuthorBirthday($birthday)){
+        if (null === $birthday || !$currentUser->isAuthorBirthday($birthday)) {
             return $this->redirectToRoute("my_birthdays");
         }
 
         $form = $this->createForm(BirthdayType::class, $birthday);
         $form->handleRequest($request);
 
-        if($form->isSubmitted()){
+        if ($form->isSubmitted()) {
             $em = $this->getDoctrine()->getManager();
             $em->merge($birthday);
             $em->flush();
@@ -113,7 +126,8 @@ class BirthdayController extends Controller
         return $this->render("birthdays/edit_birthday.html.twig",
             [
                 'form' => $form->createView(),
-                'birthday' => $birthday
+                'birthday' => $birthday,
+                'events' => $events,
             ]);
     }
 
@@ -129,17 +143,19 @@ class BirthdayController extends Controller
     {
         $birthday = $this->getBirthdayValid($id);
 
+        $events = $this->eventsAuthor();
+
         /** @var User $currentUser */
         $currentUser = $this->getUser();
 
-        if(null === $birthday || !$currentUser->isAuthorBirthday($birthday)){
+        if (null === $birthday || !$currentUser->isAuthorBirthday($birthday)) {
             return $this->redirectToRoute("my_birthdays");
         }
 
         $form = $this->createForm(BirthdayType::class, $birthday);
         $form->handleRequest($request);
 
-        if($form->isSubmitted()){
+        if ($form->isSubmitted()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($birthday);
             $em->flush();
@@ -150,7 +166,8 @@ class BirthdayController extends Controller
         return $this->render("birthdays/delete_birthday.html.twig",
             [
                 'form' => $form->createView(),
-                'birthday' => $birthday
+                'birthday' => $birthday,
+                'events' => $events,
             ]);
     }
 
@@ -165,5 +182,30 @@ class BirthdayController extends Controller
             ->getRepository(Birthday::class)
             ->find($id);
         return $birthday;
+    }
+
+    /**
+     * @return array
+     */
+    public function birthdaysAuthor(): array
+    {
+        $birthdays = $this
+            ->getDoctrine()
+            ->getRepository(Birthday::class)
+            ->findBy(['author' => $this->getUser()]);
+
+        return $birthdays;
+    }
+
+    /**
+     * @return array
+     */
+    public function eventsAuthor(): array
+    {
+        $events = $this
+            ->getDoctrine()
+            ->getRepository(Event::class)
+            ->findBy(['author' => $this->getUser()]);
+        return $events;
     }
 }
