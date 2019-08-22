@@ -108,8 +108,6 @@ class BirthdayController extends Controller
     {
         $birthday = $this->getBirthdayValid($id);
 
-        $events = $this->eventsAuthor();
-
         /** @var User $currentUser */
         $currentUser = $this->getUser();
 
@@ -127,12 +125,15 @@ class BirthdayController extends Controller
 
             return $this->redirectToRoute("my_birthdays");
         }
+        $birthdays = $this->birthdaysAuthor();
+        $events = $this->eventsAuthor();
 
         return $this->render("birthdays/edit_birthday.html.twig",
             [
                 'form' => $form->createView(),
                 'birthday' => $birthday,
                 'events' => $events,
+                'birthdays' => $birthdays,
             ]);
     }
 

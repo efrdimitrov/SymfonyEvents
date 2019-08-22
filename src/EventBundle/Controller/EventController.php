@@ -39,7 +39,6 @@ class EventController extends Controller
     public function create()
     {
         $events = $this->eventsAuthor();
-
         $birthdays = $this->birthdaysAuthor();
 
         $categoryRepository = $this
@@ -88,7 +87,6 @@ class EventController extends Controller
     public function myEvents()
     {
         $events = $this->eventsAuthor();
-
         $birthdays = $this->birthdaysAuthor();
 
         return $this->render("events/my_events.html.twig",
@@ -109,9 +107,7 @@ class EventController extends Controller
     public function edit(Request $request, int $id)
     {
         $event = $this->getEventValid($id);
-
         $events = $this->eventsAuthor();
-
         $birthdays = $this->birthdaysAuthor();
 
         /** @var User $currentUser */
@@ -154,9 +150,7 @@ class EventController extends Controller
     public function delete(Request $request, int $id)
     {
         $event = $this->getEventValid($id);
-
         $events = $this->eventsAuthor();
-
         $birthdays = $this->birthdaysAuthor();
 
         /** @var User $currentUser */
