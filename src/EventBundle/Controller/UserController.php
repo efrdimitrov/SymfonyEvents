@@ -2,6 +2,8 @@
 
 namespace EventBundle\Controller;
 
+use EventBundle\Entity\Birthday;
+use EventBundle\Entity\Event;
 use EventBundle\Entity\User;
 use EventBundle\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -71,8 +73,16 @@ class UserController extends Controller
             ->getRepository(User::class);
         $currentUser = $userRepository->find($this->getUser());
 
+        $events = $this->eventsAuthor();
+
+        $birthdays = $this->birthdaysAuthor();
+
         return $this->render("users/profile.html.twig",
-            ['user' => $currentUser]);
+            [
+                'user' => $currentUser,
+                'events' => $events,
+                'birthdays' => $birthdays,
+            ]);
     }
 
     /**
@@ -98,10 +108,16 @@ class UserController extends Controller
             return $this->redirectToRoute("user_profile");
         }
 
+        $events = $this->eventsAuthor();
+
+        $birthdays = $this->birthdaysAuthor();
+
         return $this->render("users/edit_profile.html.twig",
             [
                 'form' => $form->createView(),
-                'user' => $user
+                'user' => $user,
+                'events' => $events,
+                'birthdays' => $birthdays,
             ]);
     }
 
@@ -126,10 +142,16 @@ class UserController extends Controller
             return $this->redirectToRoute("security_logout");
         }
 
+        $events = $this->eventsAuthor();
+
+        $birthdays = $this->birthdaysAuthor();
+
         return $this->render("users/delete_user.html.twig",
             [
                 'form' => $form->createView(),
-                'user' => $user
+                'user' => $user,
+                'events' => $events,
+                'birthdays' => $birthdays,
             ]);
     }
 
@@ -152,6 +174,31 @@ class UserController extends Controller
             ->get('security.password_encoder')
             ->encodePassword($user, $user->getPassword());
         $user->setPassword($passwordHash);
+    }
+
+    /**
+     * @return array
+     */
+    public function eventsAuthor(): array
+    {
+        $events = $this
+            ->getDoctrine()
+            ->getRepository(Event::class)
+            ->findBy(['author' => $this->getUser()]);
+
+        return $events;
+    }
+
+    /**
+     * @return array
+     */
+    public function birthdaysAuthor(): array
+    {
+        $birthdays = $this
+            ->getDoctrine()
+            ->getRepository(Birthday::class)
+            ->findBy(['author' => $this->getUser()]);
+        return $birthdays;
     }
 
 }
