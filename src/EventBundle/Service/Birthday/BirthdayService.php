@@ -1,7 +1,7 @@
 <?php
 
 
-namespace EventBundle\Service;
+namespace EventBundle\Service\Birthday;
 
 
 use Doctrine\ORM\EntityManagerInterface;
