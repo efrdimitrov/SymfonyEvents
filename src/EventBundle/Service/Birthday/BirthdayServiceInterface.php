@@ -1,7 +1,7 @@
 <?php
 
 
-namespace EventBundle\Service;
+namespace EventBundle\Service\Birthday;
 
 
 use EventBundle\Entity\Birthday;

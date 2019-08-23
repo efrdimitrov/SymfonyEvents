@@ -1,7 +1,7 @@
 <?php
 
 
-namespace EventBundle\Service;
+namespace EventBundle\Service\User;
 
 use EventBundle\Entity\User;
 use EventBundle\Repository\UserRepository;

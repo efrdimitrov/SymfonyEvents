@@ -1,7 +1,7 @@
 <?php
 
 
-namespace EventBundle\Service;
+namespace EventBundle\Service\Event;
 
 
 use Doctrine\ORM\EntityManagerInterface;
