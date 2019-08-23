@@ -13,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class UserController extends Controller
 {
@@ -30,9 +31,10 @@ class UserController extends Controller
      * @Route("/users/register/process", name="user_register_process", methods={"POST"})
      *
      * @param Request $request
+     * @param AuthenticationUtils $authenticationUtils
      * @return Response
      */
-    public function registerProcess(Request $request)
+    public function registerProcess(Request $request, AuthenticationUtils $authenticationUtils)
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -58,9 +60,13 @@ class UserController extends Controller
 
         $this->addFlash('success', 'Account successfully created!');
 
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+
         return $this->render("security/login.html.twig",
             [
                 'user' => $user,
+                'error' => $error,
             ]);
     }
 

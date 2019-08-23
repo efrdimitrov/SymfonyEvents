@@ -35,7 +35,7 @@
                         <label class="col-sm-4 control-label">Email</label>
                         <span id="email_error"></span>
                         <input type="text" name="user[email]" class="form-control" placeholder="Enter valid email"
-                               id="user_email">
+                               id="user_email" value="{{ app.request.parameter.get("user[email]") }}">
                     </div>
 
                     <div class="form-group" id="password_div">
