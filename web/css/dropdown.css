@@ -14,7 +14,7 @@ body {
 
 .nav li {
   font-family: 'Oswald', sans-serif;
-  font-size: 1.2em;
+  font-size: 1.0em;
   line-height: 40px;
   text-align: left;
 }
@@ -50,13 +50,13 @@ body {
    or other values could be used depending on other factors
 ********************************************/
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 680px) {
   .nav li {
-    width: 150px;
+    width: 170px;
     border-bottom: none;
     height: 50px;
     line-height: 50px;
-    font-size: 1.2em;
+    font-size: 1.0em;
     display: inline-block;
     margin-right: -4px;
   }
@@ -105,7 +105,7 @@ body {
 
 .nav li {
   font-family: 'Oswald', sans-serif;
-  font-size: 1.2em;
+  font-size: 1.0em;
   line-height: 40px;
   text-align: left;
 }
@@ -141,13 +141,13 @@ body {
    or other values could be used depending on other factors
 ********************************************/
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 680px) {
   .nav li {
-    width: 150px;
+    width: 170px;
     border-bottom: none;
     height: 50px;
     line-height: 50px;
-    font-size: 1.4em;
+    font-size: 1.2em;
     display: inline-block;
     margin-right: -4px;
   }
