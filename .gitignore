@@ -1,5 +1,3 @@
 idea/
 var/
 vendor/
-*
-!.gitignore
