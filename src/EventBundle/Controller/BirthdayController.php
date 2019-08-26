@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-use EventBundle\Service\BirthdayServiceInterface;
+use EventBundle\Service\Birthday\BirthdayServiceInterface;
 
 class BirthdayController extends Controller
 {
@@ -106,10 +106,9 @@ class BirthdayController extends Controller
      */
     public function edit(Request $request, int $id)
     {
-        $birthday = $this->getBirthdayValid($id);
-
         /** @var User $currentUser */
         $currentUser = $this->getUser();
+        $birthday = $this->getBirthdayValid($id);
 
         if (null === $birthday || !$currentUser->isAuthorBirthday($birthday)) {
             return $this->redirectToRoute("my_birthdays");
@@ -125,6 +124,7 @@ class BirthdayController extends Controller
 
             return $this->redirectToRoute("my_birthdays");
         }
+
         $birthdays = $this->birthdaysAuthor();
         $events = $this->eventsAuthor();
 
@@ -149,8 +149,6 @@ class BirthdayController extends Controller
     {
         $birthday = $this->getBirthdayValid($id);
 
-        $events = $this->eventsAuthor();
-
         /** @var User $currentUser */
         $currentUser = $this->getUser();
 
@@ -169,10 +167,14 @@ class BirthdayController extends Controller
             return $this->redirectToRoute("my_birthdays");
         }
 
+        $birthdays = $this->birthdaysAuthor();
+        $events = $this->eventsAuthor();
+
         return $this->render("birthdays/delete_birthday.html.twig",
             [
                 'form' => $form->createView(),
                 'birthday' => $birthday,
+                'birthdays' => $birthdays,
                 'events' => $events,
             ]);
     }
