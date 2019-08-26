@@ -44,7 +44,7 @@ class Event
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="EventBundle\Entity\User", inversedBy="events")
+     * @ORM\ManyToOne(targetEntity="EventBundle\Entity\User", inversedBy="events", cascade={"persist", "remove"})
      */
     private $author;
     /**
