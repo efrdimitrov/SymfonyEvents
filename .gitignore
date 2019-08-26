@@ -1,5 +1,5 @@
-prowerka za ednakvi imena
-da ne moje drug potrebitel da iztriva i editva
-edit na profila
-syobshteniq za greshki minimum simwoli, za email i dr.
-da izkara event otgore ako e dneshnata data
+idea/
+var/
+vendor/
+*
+!.gitignore
