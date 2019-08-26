@@ -7,7 +7,7 @@ use EventBundle\Entity\Category;
 use EventBundle\Entity\Event;
 use EventBundle\Entity\User;
 use EventBundle\Form\EventType;
-use EventBundle\Service\EventServiceInterface;
+use EventBundle\Service\Event\EventServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -82,10 +82,12 @@ class EventController extends Controller
     /**
      * @Route("/my_events", name="my_events")
      *
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @return Response
      */
     public function myEvents()
     {
+
         $events = $this->eventsAuthor();
         $birthdays = $this->birthdaysAuthor();
 
@@ -150,8 +152,6 @@ class EventController extends Controller
     public function delete(Request $request, int $id)
     {
         $event = $this->getEventValid($id);
-        $events = $this->eventsAuthor();
-        $birthdays = $this->birthdaysAuthor();
 
         /** @var User $currentUser */
         $currentUser = $this->getUser();
@@ -173,6 +173,9 @@ class EventController extends Controller
             ->getDoctrine()
             ->getRepository(Category::class);
         $categories = $categoryRepository->findAll();
+
+        $events = $this->eventsAuthor();
+        $birthdays = $this->birthdaysAuthor();
         return $this->render('events/delete_event.html.twig',
             [
                 'form' => $form->createView(),
