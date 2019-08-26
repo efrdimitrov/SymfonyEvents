@@ -30,29 +30,31 @@
                     <ul class="nav navbar-nav navbar-right">
                         {% if app.user %}
 
-                            <li class="news"><a href="{{ path('my_events') }}">Events</a>
+                            <li class="news"><a href="{{ path('create_event') }}">NEW EVENT</a>
                                 <ul>
-                                    <li><a href="{{ path('create_event') }}">New Events</a></li>
-                                    <li><a href="{{ path('my_events') }}">My Events</a></li>
+                                    {% if events|length > 0 %}
+                                        <li><a href="{{ path('my_events') }}">MY EVENTS</a></li>
+                                    {% endif %}
                                 </ul>
                             </li>
 
-                            <li class="news"><a href="{{ path('my_birthdays') }}">Birthdays</a>
+                            <li class="news"><a href="{{ path('create_birthday') }}">NEW BIRTHDAY</a>
                                 <ul>
-                                    <li><a href="{{ path('create_birthday') }}">New Birthdays</a></li>
-                                    <li><a href="{{ path('my_birthdays') }}">My Birthdays</a></li>
+                                    {% if birthdays|length > 0 %}
+                                        <li><a href="{{ path('my_birthdays') }}">MY BIRTHDAYS</a></li>
+                                    {% endif %}
                                 </ul>
                             </li>
 
-                            <li class="news"><a href="{{ path('user_profile') }}">Profile</a>
+                            <li class="news"><a href="{{ path('user_profile') }}">PROFILE</a>
                                 <ul>
-                                    <li><a href="{{ path('edit_profile', {id: app.user.id}) }}">Edit Profile</a></li>
-                                    <li><a href="{{ path('delete_profile', {id: app.user.id}) }}">Delete Profile</a>
+                                    <li><a href="{{ path('edit_profile', {id: app.user.id}) }}">EDIT PROFILE</a></li>
+                                    <li><a href="{{ path('delete_profile', {id: app.user.id}) }}">DELETE PROFILE</a>
                                     </li>
                                 </ul>
                             </li>
 
-                            <li><a href="{{ path('security_logout') }}">Logout</a></li>
+                            <li><a href="{{ path('security_logout') }}">LOGOUT</a></li>
 
 
                         {% else %}
@@ -72,7 +74,7 @@
             </div>
         </div>
         {% if app.user %}
-        {{ include('viewEventsAndBirthdays.html.twig') }}
+            {{ include('viewEventsAndBirthdays.html.twig') }}
         {% endif %}
 
     </header>
@@ -97,12 +99,23 @@
 {% endblock %}
 
 {% block javascripts %}
+    <script data-require="jquery@*" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script data-require="bootstrap@*" data-semver="3.1.1" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
     <script src="{{ asset('js/moment.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
     <script src="{{ asset('js/validRegisterForm.js') }}"></script>
     <script>
+        $(document).keydown(function (event) { //block F12 keyboard
+            if (event.keyCode == 123) { // Prevent F12
+                return false;
+            } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I
+                return false;
+            }
+        });
+
         $(function () {
             $('.datepicker').datepicker({
                 format: 'yyyy-mm-dd',
