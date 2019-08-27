@@ -9,7 +9,7 @@
         <div class="well">
             <form name="authenticate" class="form-horizontal" action="{{ path('security_login') }}" method="post">
                 <fieldset>
-                    <legend>Login</legend>
+                    <legend>Login Form</legend>
                     {% for message in app.flashes('success') %}
                         <div class="alert alert-success">
                             {{ message }}
@@ -21,7 +21,7 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="user_email">Username</label>
                         <div class="col-sm-4 ">
-                            <input value="{% if user is defined %}{{ user.username }} {% endif %}" class="form-control" id="user_username" name="_username">
+                            <input value="{{ user.username|default(null) }}" class="form-control" id="user_username" name="_username">
                         </div>
                     </div>
                     <div class="form-group">
