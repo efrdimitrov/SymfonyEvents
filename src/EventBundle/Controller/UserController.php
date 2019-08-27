@@ -6,6 +6,7 @@ use EventBundle\Entity\Birthday;
 use EventBundle\Entity\Event;
 use EventBundle\Entity\User;
 use EventBundle\Form\UserType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -130,6 +131,7 @@ class UserController extends Controller
     /**
      * @Route("/delete_profile/{id}", name="delete_profile")
      *
+     * @ParamConverter("post", class="EventBundle:User")
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @param Request $request
      * @param User $user

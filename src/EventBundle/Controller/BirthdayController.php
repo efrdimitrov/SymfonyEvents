@@ -87,6 +87,10 @@ class BirthdayController extends Controller
     {
         $birthdays = $this->birthdaysAuthor();
 
+        if(count($birthdays) == 0){
+            return $this->redirectToRoute('create_birthday');
+        }
+
         $events = $this->eventsAuthor();
 
         return $this->render("birthdays/my_birthdays.html.twig",

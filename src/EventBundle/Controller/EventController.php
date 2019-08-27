@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
+
 class EventController extends Controller
 {
     /**
@@ -87,8 +88,12 @@ class EventController extends Controller
      */
     public function myEvents()
     {
-
         $events = $this->eventsAuthor();
+
+//        if(count($events) == 0){
+//            return $this->redirectToRoute('create_event');
+//        }
+
         $birthdays = $this->birthdaysAuthor();
 
         return $this->render("events/my_events.html.twig",

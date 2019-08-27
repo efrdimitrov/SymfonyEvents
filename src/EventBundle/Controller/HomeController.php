@@ -4,6 +4,7 @@ namespace EventBundle\Controller;
 
 use EventBundle\Entity\Birthday;
 use EventBundle\Entity\Event;
+use EventBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
