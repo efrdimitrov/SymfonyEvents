@@ -6,9 +6,11 @@
         <div class="well">
             <form name="authenticate" class="form-horizontal" action="{{ path('added_event') }}" method="post">
                 <fieldset>
-                        <legend>Add New Event
+                    <legend>Add New Event
+                        {% if(events|length > 0) %}
                             <a class="btn btn-info bnt-xs pull-right" href="{{ path('my_events') }}">My Events</a>
-                        </legend>
+                        {% endif %}
+                    </legend>
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="event_name">Name</label>
                         <div class="col-sm-4 ">
