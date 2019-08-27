@@ -7,7 +7,9 @@
             <form name="authenticate" class="form-horizontal" action="{{ path('added_birthday') }}" method="post">
                 <fieldset>
                     <legend>Add New Birthday
-                        <a class="btn btn-info bnt-xs pull-right" href="{{ path('my_birthdays') }}">My Birthdays</a>
+                        {% if(events|length > 0) %}
+                            <a class="btn btn-info bnt-xs pull-right" href="{{ path('my_birthdays') }}">My Birthdays</a>
+                        {% endif %}
                     </legend>
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="event_name">Name</label>
@@ -19,7 +21,8 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label" for="event_date">Born On</label>
                         <div class="col-sm-4 ">
-                            <input autocomplete="off" type="text" class="datepicker" id="event_date" placeholder="Born On"
+                            <input autocomplete="off" type="text" class="datepicker" id="event_date"
+                                   placeholder="Born On"
                                    name="birthday[bornOn]">
                         </div>
                     </div>
