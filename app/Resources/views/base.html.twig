@@ -107,15 +107,8 @@
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
     <script src="{{ asset('js/validRegisterForm.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
     <script>
-        $(document).keydown(function (event) { //block F12 keyboard
-            if (event.keyCode == 123) { // Prevent F12
-                return false;
-            } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I
-                return false;
-            }
-        });
-
         $(function () {
             $('.datepicker').datepicker({
                 format: 'yyyy-mm-dd',
