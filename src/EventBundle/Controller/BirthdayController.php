@@ -105,14 +105,13 @@ class BirthdayController extends Controller
      *
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @param Request $request
-     * @param int $id
+     * @param Birthday $birthday
      * @return Response
      */
-    public function edit(Request $request, int $id)
+    public function edit(Request $request, Birthday $birthday)
     {
         /** @var User $currentUser */
         $currentUser = $this->getUser();
-        $birthday = $this->getBirthdayValid($id);
 
         if (null === $birthday || !$currentUser->isAuthorBirthday($birthday)) {
             return $this->redirectToRoute("my_birthdays");
@@ -146,12 +145,11 @@ class BirthdayController extends Controller
      *
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @param Request $request
-     * @param int $id
+     * @param Birthday $birthday
      * @return Response
      */
-    public function delete(Request $request, int $id)
+    public function delete(Request $request, Birthday $birthday)
     {
-        $birthday = $this->getBirthdayValid($id);
 
         /** @var User $currentUser */
         $currentUser = $this->getUser();
@@ -163,7 +161,7 @@ class BirthdayController extends Controller
         $form = $this->createForm(BirthdayType::class, $birthday);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($birthday);
             $em->flush();
@@ -181,19 +179,6 @@ class BirthdayController extends Controller
                 'birthdays' => $birthdays,
                 'events' => $events,
             ]);
-    }
-
-    /**
-     * @param int $id
-     * @return object|null
-     */
-    public function getBirthdayValid(int $id)
-    {
-        $birthday = $this
-            ->getDoctrine()
-            ->getRepository(Birthday::class)
-            ->find($id);
-        return $birthday;
     }
 
     /**
