@@ -2,7 +2,6 @@
 
 namespace EventBundle\Form;
 
-use EventBundle\Entity\Event;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -34,7 +33,7 @@ class EventType extends AbstractType
     {
         $resolver->setDefaults(
             [
-                'data_class' => Event::class
+                'data_class' => 'EventBundle\Entity\Event',
             ]
         );
     }
