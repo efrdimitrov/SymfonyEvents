@@ -108,12 +108,11 @@ class EventController extends Controller
      *
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @param Request $request
-     * @param int $id
+     * @param Event $event
      * @return Response
      */
-    public function edit(Request $request, int $id)
+    public function edit(Request $request, Event $event)
     {
-        $event = $this->getEventValid($id);
         $events = $this->eventsAuthor();
         $birthdays = $this->birthdaysAuthor();
 
@@ -151,12 +150,13 @@ class EventController extends Controller
      *
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @param Request $request
-     * @param int $id
+     * @param Event $event
      * @return Response
      */
-    public function delete(Request $request, int $id)
+    public function delete(Request $request, Event $event)
     {
-        $event = $this->getEventValid($id);
+        $events = $this->eventsAuthor();
+        $birthdays = $this->birthdaysAuthor();
 
         /** @var User $currentUser */
         $currentUser = $this->getUser();
@@ -167,20 +167,16 @@ class EventController extends Controller
 
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($event);
             $em->flush();
-
             return $this->redirectToRoute("my_events");
         }
         $categoryRepository = $this
             ->getDoctrine()
             ->getRepository(Category::class);
         $categories = $categoryRepository->findAll();
-
-        $events = $this->eventsAuthor();
-        $birthdays = $this->birthdaysAuthor();
         return $this->render('events/delete_event.html.twig',
             [
                 'form' => $form->createView(),
@@ -189,19 +185,6 @@ class EventController extends Controller
                 'birthdays' => $birthdays,
                 'categories' => $categories
             ]);
-    }
-
-    /**
-     * @param int $id
-     * @return object|null
-     */
-    public function getEventValid(int $id)
-    {
-        $event = $this
-            ->getDoctrine()
-            ->getRepository(Event::class)
-            ->find($id);
-        return $event;
     }
 
     /**
