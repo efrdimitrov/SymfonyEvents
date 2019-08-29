@@ -33,24 +33,29 @@ class UserController extends Controller
      *
      * @param Request $request
      * @param AuthenticationUtils $authenticationUtils
+     * @param $email
      * @return Response
      */
     public function registerProcess(Request $request, AuthenticationUtils $authenticationUtils)
     {
         $user = new User();
+        $email = $user->getEmail();
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository(User::class);
+        $emailItem = $repository->findOneBy(array('email' => $email));
+
+        if (!$emailItem) {
+            $this->addFlash('exists_email', 'This email already exists!');
+        }
+
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         $em = $this->getDoctrine()->getManager();
+
         $allUsers = $em->getRepository(User::class)->findAll(array('username' => 'ASC'));
         if (in_array($user->getUsername(), $allUsers)) {
             $this->addFlash('exists_user', 'Username already exists!');
-            return $this->redirectToRoute("user_register");
-        }
-
-        $allEmails = $em->getRepository(User::class)->findAll(array('email' => 'ASC'));
-        if (in_array($user->getEmail(), $allEmails)) {
-            $this->addFlash('exists_email', 'This email already exists!');
             return $this->redirectToRoute("user_register");
         }
 
