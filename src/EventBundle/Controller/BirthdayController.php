@@ -145,40 +145,31 @@ class BirthdayController extends Controller
      *
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @param Request $request
-     * @param Birthday $birthday
+     * @param int $id
      * @return Response
      */
-    public function delete(Request $request, Birthday $birthday)
+    public function delete(int $id)
     {
+        $birthday = $this->getBirthdayValid($id);
 
-        /** @var User $currentUser */
-        $currentUser = $this->getUser();
-
-        if (null === $birthday || !$currentUser->isAuthorBirthday($birthday)) {
-            return $this->redirectToRoute("my_birthdays");
-        }
-
-        $form = $this->createForm(BirthdayType::class, $birthday);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($birthday);
             $em->flush();
 
             return $this->redirectToRoute("my_birthdays");
-        }
+    }
 
-        $birthdays = $this->birthdaysAuthor();
-        $events = $this->eventsAuthor();
-
-        return $this->render("birthdays/delete_birthday.html.twig",
-            [
-                'form' => $form->createView(),
-                'birthday' => $birthday,
-                'birthdays' => $birthdays,
-                'events' => $events,
-            ]);
+    /**
+     * @param int $id
+     * @return object|null
+     */
+    public function getBirthdayValid(int $id)
+    {
+        $birthday = $this
+            ->getDoctrine()
+            ->getRepository(Birthday::class)
+            ->find($id);
+        return $birthday;
     }
 
     /**
