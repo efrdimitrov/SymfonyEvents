@@ -42,12 +42,12 @@ class UserController extends Controller
         $repository = $em->getRepository(User::class);
         $emailItem = $repository->findOneBy(array('email' => $email));
 
-        if (!$emailItem) {
-            $this->addFlash('exists_email', 'This email already exists!');
-        }
-
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
+
+        if (!$emailItem && $form->isValid()) {
+            $this->addFlash('exists_email', 'This email already exists!');
+        }
 
         $em = $this->getDoctrine()->getManager();
 
