@@ -54,14 +54,14 @@ class User implements UserInterface
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="EventBundle\Entity\Event", mappedBy="author", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="EventBundle\Entity\Event", mappedBy="author")
      */
     private $events;
 
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="EventBundle\Entity\Birthday", mappedBy="author", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="EventBundle\Entity\Birthday", mappedBy="author")
      */
     private $birthdays;
 
