@@ -7,7 +7,7 @@
             <form name="authenticate" class="form-horizontal" action="{{ path('added_birthday') }}" method="post">
                 <fieldset>
                     <legend>Add New Birthday
-                        {% if(events|length > 0) %}
+                        {% if(birthdays|length > 0) %}
                             <a class="btn btn-info bnt-xs pull-right" href="{{ path('my_birthdays') }}">My Birthdays</a>
                         {% endif %}
                     </legend>
