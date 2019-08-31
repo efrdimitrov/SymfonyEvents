@@ -26,8 +26,53 @@
                         <td class="navbar-form">{{ event.dateEvent|date('d.m.Y') }}</td>
                         <td><a class="btn btn-success bnt-xs" href="{{ path('edit_event', {id: event.id}) }}">Edit</a>
                         </td>
-                        <td><a class="btn btn-danger bnt-xs" onclick="return confirm('Are you sure?')"
-                               href="{{ path('delete_event', {id: event.id}) }}">Delete</a></td>
+                        <td>
+                            <a class="btn btn-danger bnt-xs" data-toggle="modal"
+                               data-target="#{{ event.id }}">Delete</a>
+
+                            <div class="modal fade" id="{{ event.id }}" tabindex="-1" role="dialog"
+                                 aria-labelledby="myModalLabel" aria-hidden="true">
+
+
+                                <form name="authenticate" class="form-horizontal"
+                                      action="{{ path('delete_birthday', {id: event.id}) }}" method="post">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-hidden="true">
+                                                    &times;
+                                                </button>
+                                                <h4 class="modal-title" id="myModalLabel">Delete Form</h4>
+                                            </div>
+
+                                            <div class="col-lg-4">
+                                                <h4><span class="pull-left">Name: {{ event.name }}</span></h4>
+
+                                                <h4><span class="pull-left">Category: {{ event.categoryName }}</span></h4>
+
+                                                <h4><span class="pull-left">Description: {{ event.description }}</span></h4>
+
+                                                <h4><span class="pull-left">Date: {{ event.dateEvent|date('d.m.Y') }} </span></h4>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                        Close
+                                                    </button>
+                                                    <button type="submit" class="btn btn-danger">Yes, Delete
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </td>
+                    </tr>
+                    </td>
                     </tr>
                 {% endfor %}
                 </tbody>

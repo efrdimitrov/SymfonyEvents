@@ -25,11 +25,12 @@
                         </td>
                         <td>
 
+                            <a class="btn btn-danger bnt-xs" data-toggle="modal" data-target="#{{ birthday.id }}">Delete</a>
 
-                            <a class="btn btn-danger bnt-xs" data-toggle="modal" data-target="#myModal">Delete</a>
-
-                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                            <div class="modal fade" id="{{ birthday.id }}" tabindex="-1" role="dialog"
                                  aria-labelledby="myModalLabel" aria-hidden="true">
+
+
                                 <form name="authenticate" class="form-horizontal"
                                       action="{{ path('delete_birthday', {id: birthday.id}) }}" method="post">
                                     <div class="modal-dialog">
@@ -42,16 +43,16 @@
                                                 <h4 class="modal-title" id="myModalLabel">Delete Form</h4>
                                             </div>
 
-                                            <label class="col-sm-4 control-label" for="event_name">Name: {{ birthday.name }}</label>
+                                            <h4><span class="pull-left">Name:{{ birthday.name }}</span></h4>
 
-                                            <label class="col-sm-4 control-label" for="event_name">Date: {{ birthday.bornOn|date('d.m.Y') }}</label>
+                                            <h4><span class="pull-right">Date: {{ birthday.bornOn|date('d.m.Y') }} </span></h4>
 
                                             <div class="modal-body">
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">
                                                         Close
                                                     </button>
-                                                    <button type="submit" class="btn btn-primary">Save changes
+                                                    <button type="submit" class="btn btn-danger">Yes, Delete
                                                     </button>
                                                 </div>
                                             </div>
