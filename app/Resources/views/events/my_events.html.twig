@@ -35,7 +35,7 @@
 
 
                                 <form name="authenticate" class="form-horizontal"
-                                      action="{{ path('delete_birthday', {id: event.id}) }}" method="post">
+                                      action="{{ path('delete_event', {id: event.id}) }}" method="post">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -47,7 +47,7 @@
                                             </div>
 
                                             <div class="col-lg-4">
-                                                <h4><span class="pull-left">Name: {{ event.name }}</span></h4>
+                                                <h4><span class="pull-left">Name: {{ event.name}} </span></h4>
 
                                                 <h4><span class="pull-left">Category: {{ event.categoryName }}</span></h4>
 
