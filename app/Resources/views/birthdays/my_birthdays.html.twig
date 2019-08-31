@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-    <a href="{{ path('create_birthday') }}" class="navbar">New Birthday</a>
-    <br />
+    <a class="btn btn-default bnt-xs" href="{{ path('create_birthday') }}">New Birthday</a>
+    <br/>
     <div id="wrapper">
         <div id="container">
             <table style="border: 2px solid;">
@@ -21,13 +21,52 @@
                         <td style="border: 2px solid;">{{ birthday.name }}</td>
                         <td style="border: 2px solid;">{{ birthday.getBornOn|date('d.m.Y') }}</td>
                         <td style="border: 2px solid;">{{ birthday.years }}</td>
-                        <td><a class="btn btn-success" href="{{ path('edit_birthday', {id: birthday.id}) }}">Edit</a> </td>
-                        <td><a class="btn btn-danger"
-                               href="{{ path('delete_birthday', {id: birthday.id}) }}">Delete</a> </td>
+                        <td><a class="btn btn-success" href="{{ path('edit_birthday', {id: birthday.id}) }}">Edit</a>
+                        </td>
+                        <td>
+
+
+                            <a class="btn btn-danger bnt-xs" data-toggle="modal" data-target="#myModal">Delete</a>
+
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                                 aria-labelledby="myModalLabel" aria-hidden="true">
+                                <form name="authenticate" class="form-horizontal"
+                                      action="{{ path('delete_birthday', {id: birthday.id}) }}" method="post">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-hidden="true">
+                                                    &times;
+                                                </button>
+                                                <h4 class="modal-title" id="myModalLabel">Delete Form</h4>
+                                            </div>
+
+                                            <label class="col-sm-4 control-label" for="event_name">Name: {{ birthday.name }}</label>
+
+                                            <label class="col-sm-4 control-label" for="event_name">Date: {{ birthday.bornOn|date('d.m.Y') }}</label>
+
+                                            <div class="modal-body">
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                        Close
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary">Save changes
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
+
+
         </div>
     </div>
 {% endblock %}
