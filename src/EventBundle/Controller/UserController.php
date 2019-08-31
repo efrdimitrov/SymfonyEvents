@@ -6,7 +6,6 @@ use EventBundle\Entity\Birthday;
 use EventBundle\Entity\Event;
 use EventBundle\Entity\User;
 use EventBundle\Form\UserType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -31,7 +30,6 @@ class UserController extends Controller
      *
      * @param Request $request
      * @param AuthenticationUtils $authenticationUtils
-     * @param $email
      * @return Response
      */
     public function registerProcess(Request $request, AuthenticationUtils $authenticationUtils)

@@ -4,16 +4,16 @@ namespace EventBundle\Controller;
 
 use EventBundle\Entity\Birthday;
 use EventBundle\Entity\Event;
-use EventBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
 
 class HomeController extends Controller
 {
 
     /**
      * @Route("/", name="event_index")
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function indexAction()
     {

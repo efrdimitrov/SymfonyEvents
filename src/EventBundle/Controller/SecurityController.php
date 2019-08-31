@@ -5,6 +5,7 @@ namespace EventBundle\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\HttpFoundation\Response;
 
 class SecurityController extends Controller
 {
@@ -12,7 +13,7 @@ class SecurityController extends Controller
      * @Route("/login", name="security_login")
      *
      * @param AuthenticationUtils $authenticationUtils
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function login(AuthenticationUtils $authenticationUtils)
     {

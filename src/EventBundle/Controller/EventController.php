@@ -105,12 +105,11 @@ class EventController extends Controller
      *
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @param Request $request
-     * @param int $id
+     * @param Event $event
      * @return Response
      */
-    public function edit(Request $request, int $id)
+    public function edit(Request $request, Event $event)
     {
-        $event = $this->getEventValid($id);
         $events = $this->eventsAuthor();
         $birthdays = $this->birthdaysAuthor();
 
@@ -147,19 +146,18 @@ class EventController extends Controller
      * @Route("/delete_event/{id}", name="delete_event")
      *
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
-     * @param Request $request
      * @param $id
      * @return Response
      */
     public function delete(int $id)
     {
-
         $event = $this->getEventValid($id);
 
         $em = $this->getDoctrine()->getManager();
-            $em->remove($event);
-            $em->flush();
-            return $this->redirectToRoute("my_events");
+        $em->remove($event);
+        $em->flush();
+
+        return $this->redirectToRoute("my_events");
     }
 
     /**
