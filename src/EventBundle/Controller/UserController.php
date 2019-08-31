@@ -132,41 +132,6 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/delete_profile/{id}", name="delete_profile")
-     *
-     * @ParamConverter("post", class="EventBundle:User")
-     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
-     * @param Request $request
-     * @param User $user
-     * @return Response
-     */
-    public function delete(Request $request, User $user)
-    {
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($user);
-            $em->flush();
-
-            return $this->redirectToRoute("security_logout");
-        }
-
-        $events = $this->eventsAuthor();
-
-        $birthdays = $this->birthdaysAuthor();
-
-        return $this->render("users/delete_user.html.twig",
-            [
-                'form' => $form->createView(),
-                'user' => $user,
-                'events' => $events,
-                'birthdays' => $birthdays,
-            ]);
-    }
-
-    /**
      * @Route("/logout", name="security_logout")
      * @throws \Exception
      */
