@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
+
 class UserController extends Controller
 {
     /**
@@ -35,22 +36,22 @@ class UserController extends Controller
     public function registerProcess(Request $request, AuthenticationUtils $authenticationUtils)
     {
         $user = new User();
-        $email = $user->getEmail();
         $em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository(User::class);
-        $emailItem = $repository->findOneBy(array('email' => $email));
-
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
-        if (!$emailItem && $form->isValid()) {
-            $this->addFlash('exists_email', 'This email already exists!');
-        }
 
-        $em = $this->getDoctrine()->getManager();
+//        $email = $user->getEmail();
+//        $allEmails = $em->getRepository(User::class)->findAll(array('email' => 'ASC'));
+//
+////        \Doctrine\Common\Util\Debug::dump($user);
+//        if (array_search($email, $allEmails)) {
+//            $this->addFlash('exists_email', 'This email already exists!');
+//        }
 
         $allUsers = $em->getRepository(User::class)->findAll(array('username' => 'ASC'));
-        if (in_array($user->getUsername(), $allUsers)) {
+        if (array_search($user->getUsername(), $allUsers)) {
+
             $this->addFlash('exists_user', 'Username already exists!');
             return $this->redirectToRoute("user_register");
         }

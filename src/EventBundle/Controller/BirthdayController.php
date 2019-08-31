@@ -35,7 +35,7 @@ class BirthdayController extends Controller
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @return Response
      */
-    public function create()
+    public function crete()
     {
         $birthdays = $this->birthdaysAuthor();
 
@@ -87,7 +87,7 @@ class BirthdayController extends Controller
     {
         $birthdays = $this->birthdaysAuthor();
 
-        if (count($birthdays) == 0) {
+        if(count($birthdays) == 0){
             return $this->redirectToRoute('create_birthday');
         }
 
@@ -151,11 +151,11 @@ class BirthdayController extends Controller
     {
         $birthday = $this->getBirthdayValid($id);
 
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($birthday);
-        $em->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($birthday);
+            $em->flush();
 
-        return $this->redirectToRoute("my_birthdays");
+            return $this->redirectToRoute("my_birthdays");
     }
 
     /**

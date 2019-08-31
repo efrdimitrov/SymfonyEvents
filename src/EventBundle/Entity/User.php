@@ -14,8 +14,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="EventBundle\Repository\UserRepository")
  *
  */
+
 class User implements UserInterface
 {
+
+
     /**
      * @var int
      *

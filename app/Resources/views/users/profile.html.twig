@@ -6,13 +6,9 @@
         <a href="{{ path('edit_profile', {id: user.id}) }}" class="navbar-brand">
             Edit Profile
         </a>
-
-        <a href="{{ path('delete_profile', {id: user.id}) }}" class="navbar-brand text-danger">
-            Delete Profile
-        </a>
     </div>
-<br />
-<br />
+    <br/>
+    <br/>
     <h3> Username: {{ user.username }} </h3>
 
     <h3>Email: {{ user.email }} </h3>
@@ -23,21 +19,24 @@
         </a>
     </div>
 
-    <div>
-        <a href="{{ path('my_events') }}" class="navbar-brand">
-            My Events
-        </a>
-    </div>
+    {% if(events|length > 0) %}
+        <div>
+            <a href="{{ path('my_events') }}" class="navbar-brand">
+                My Events({{ events|length }})
+            </a>
+        </div>
+    {% endif %}
 
     <div>
         <a href="{{ path('create_birthday') }}" class="navbar-brand">
             New Birthday
         </a>
     </div>
-
-    <div>
-        <a href="{{ path('my_birthdays') }}" class="navbar-brand">
-            My Birthdays
-        </a>
-    </div>
+    {% if(birthdays|length > 0) %}
+        <div>
+            <a href="{{ path('my_birthdays') }}" class="navbar-brand">
+                My Birthdays({{ birthdays|length }})
+            </a>
+        </div>
+    {% endif %}
 {% endblock %}
