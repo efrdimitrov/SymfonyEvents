@@ -39,7 +39,6 @@ class UserType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'EventBundle\Entity\User',
-            'cascade_validation' => true,
         ));
     }
 
