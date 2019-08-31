@@ -14,7 +14,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
-
 class EventController extends Controller
 {
     /**
@@ -83,18 +82,16 @@ class EventController extends Controller
     /**
      * @Route("/my_events", name="my_events")
      *
-     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @return Response
      */
     public function myEvents()
     {
         $events = $this->eventsAuthor();
-
-//        if(count($events) == 0){
-//            return $this->redirectToRoute('create_event');
-//        }
-
         $birthdays = $this->birthdaysAuthor();
+
+        if (count($events) == 0) {
+            return $this->redirectToRoute('create_event');
+        }
 
         return $this->render("events/my_events.html.twig",
             [
@@ -108,11 +105,12 @@ class EventController extends Controller
      *
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @param Request $request
-     * @param Event $event
+     * @param int $id
      * @return Response
      */
-    public function edit(Request $request, Event $event)
+    public function edit(Request $request, int $id)
     {
+        $event = $this->getEventValid($id);
         $events = $this->eventsAuthor();
         $birthdays = $this->birthdaysAuthor();
 
@@ -150,41 +148,31 @@ class EventController extends Controller
      *
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @param Request $request
-     * @param Event $event
+     * @param $id
      * @return Response
      */
-    public function delete(Request $request, Event $event)
+    public function delete(int $id)
     {
-        $events = $this->eventsAuthor();
-        $birthdays = $this->birthdaysAuthor();
 
-        /** @var User $currentUser */
-        $currentUser = $this->getUser();
+        $event = $this->getEventValid($id);
 
-        if (null === $event || !$currentUser->isAuthorEvent($event)) {
-            return $this->redirectToRoute("my_events");
-        }
-
-        $form = $this->createForm(EventType::class, $event);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
             $em->remove($event);
             $em->flush();
             return $this->redirectToRoute("my_events");
-        }
-        $categoryRepository = $this
+    }
+
+    /**
+     * @param int $id
+     * @return object|null
+     */
+    public function getEventValid(int $id)
+    {
+        $event = $this
             ->getDoctrine()
-            ->getRepository(Category::class);
-        $categories = $categoryRepository->findAll();
-        return $this->render('events/delete_event.html.twig',
-            [
-                'form' => $form->createView(),
-                'event' => $event,
-                'events' => $events,
-                'birthdays' => $birthdays,
-                'categories' => $categories
-            ]);
+            ->getRepository(Event::class)
+            ->find($id);
+        return $event;
     }
 
     /**
