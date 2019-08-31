@@ -35,7 +35,7 @@ class BirthdayController extends Controller
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @return Response
      */
-    public function crete()
+    public function create()
     {
         $birthdays = $this->birthdaysAuthor();
 
