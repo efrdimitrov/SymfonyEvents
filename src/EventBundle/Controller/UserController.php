@@ -40,15 +40,6 @@ class UserController extends Controller
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
-
-//        $email = $user->getEmail();
-//        $allEmails = $em->getRepository(User::class)->findAll(array('email' => 'ASC'));
-//
-////        \Doctrine\Common\Util\Debug::dump($user);
-//        if (array_search($email, $allEmails)) {
-//            $this->addFlash('exists_email', 'This email already exists!');
-//        }
-
         $allUsers = $em->getRepository(User::class)->findAll(array('username' => 'ASC'));
         if (array_search($user->getUsername(), $allUsers)) {
 
