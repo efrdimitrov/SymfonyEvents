@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a08530bb-c222-41bc-afc3-cd2f026117f4" name="Default Changelist" comment="add if length">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9d6d9a19-fee8-4cac-922a-72c952c0b6a8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9d6d9a19-fee8-4cac-922a-72c952c0b6a8.xml" afterDir="false" />
+    <list default="true" id="a08530bb-c222-41bc-afc3-cd2f026117f4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/events/my_events.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/events/my_events.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/users/delete_user.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/users/profile.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/users/profile.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Resources/views/users/register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/users/register.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EventBundle/Controller/BirthdayController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EventBundle/Controller/BirthdayController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/EventBundle/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EventBundle/Controller/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/EventBundle/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EventBundle/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EventBundle/Form/UserType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EventBundle/Form/UserType.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/vendor/composer/" />
     <ignored path="$PROJECT_DIR$/vendor/doctrine/annotations/" />
@@ -119,11 +111,52 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/birthdays/my_birthdays.html.twig">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/EventBundle/Controller/UserController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="45" column="98" selection-start-line="45" selection-start-column="98" selection-end-line="45" selection-end-column="98" />
+            <state relative-caret-position="180">
+              <caret line="40" column="39" selection-start-line="40" selection-start-column="39" selection-end-line="40" selection-end-column="39" />
+              <folding>
+                <element signature="e#42#74#0#PHP" expanded="true" />
+                <element signature="e#728#754#0#PHP" expanded="true" />
+                <element signature="e#1920#1935#1#PHP" expanded="true" />
+                <element signature="e#2316#2342#0#PHP" expanded="true" />
+                <element signature="e#2821#2846#0#PHP" expanded="true" />
+                <element signature="e#3614#3628#1#PHP" expanded="true" />
+                <element signature="e#3761#3791#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="das://9d6d9a19-fee8-4cac-922a-72c952c0b6a8/schema/event/table/users">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state projectRestartId="92d49bb6-268e-4c22-88b4-cfe5755ee8ae">
+              <filtering>
+                <filter text="" />
+              </filtering>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/users/register.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="404">
+              <caret line="34" column="36" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/EventBundle/Entity/User.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="304">
+              <caret line="52" column="73" selection-start-line="52" selection-start-column="73" selection-end-line="52" selection-end-column="73" />
+              <folding>
+                <element signature="e#38#86#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -189,7 +222,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/app/config/services.yml" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
         <option value="$PROJECT_DIR$/app/Resources/views/events/main.js" />
         <option value="$PROJECT_DIR$/web/js/main.js" />
         <option value="$PROJECT_DIR$/app/config/config.yml" />
@@ -207,16 +239,17 @@
         <option value="$PROJECT_DIR$/src/EventBundle/Controller/HomeController.php" />
         <option value="$PROJECT_DIR$/src/EventBundle/Entity/Birthday.php" />
         <option value="$PROJECT_DIR$/web/js/validRegisterForm.js" />
-        <option value="$PROJECT_DIR$/app/Resources/views/users/register.html.twig" />
         <option value="$PROJECT_DIR$/src/EventBundle/Form/UserType.php" />
         <option value="$PROJECT_DIR$/src/EventBundle/Controller/BirthdayController.php" />
-        <option value="$PROJECT_DIR$/src/EventBundle/Entity/User.php" />
-        <option value="$PROJECT_DIR$/src/EventBundle/Controller/UserController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/birthdays/my_birthdays.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/events/my_events.html.twig" />
         <option value="$PROJECT_DIR$/src/EventBundle/Controller/SecurityController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/users/profile.html.twig" />
+        <option value="$PROJECT_DIR$/src/EventBundle/Entity/User.php" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
+        <option value="$PROJECT_DIR$/app/Resources/views/users/register.html.twig" />
+        <option value="$PROJECT_DIR$/src/EventBundle/Controller/UserController.php" />
       </list>
     </option>
   </component>
@@ -290,6 +323,12 @@
               <item name="SymfonyEvents" type="b2602c69:ProjectViewProjectNode" />
               <item name="SymfonyEvents" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SymfonyEvents" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SymfonyEvents" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SymfonyEvents" type="b2602c69:ProjectViewProjectNode" />
@@ -466,7 +505,8 @@
       <workItem from="1567093095086" duration="13404000" />
       <workItem from="1567179522948" duration="17935000" />
       <workItem from="1567229125486" duration="954000" />
-      <workItem from="1567254922024" duration="23399000" />
+      <workItem from="1567254922024" duration="23654000" />
+      <workItem from="1567314199902" duration="6059000" />
     </task>
     <task id="LOCAL-00001" summary="add if length">
       <created>1567229395674</created>
@@ -545,17 +585,24 @@
       <option name="project" value="LOCAL" />
       <updated>1567229729392</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="edit">
+      <created>1567279064275</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1567279064276</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94168000" />
+    <option name="totallyTimeSpent" value="100482000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28668684" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.290469" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -567,7 +614,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Console" order="7" weight="0.5037594" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32843137" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49924356" weight="0.32843137" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49924356" weight="0.64215684" />
       <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.50075644" side_tool="true" weight="0.32843137" />
@@ -646,21 +693,14 @@
     <MESSAGE value="add if length" />
     <MESSAGE value="change class" />
     <MESSAGE value="add bootstrap.css" />
-    <MESSAGE value="edit" />
     <MESSAGE value="change delete function" />
     <MESSAGE value="add Flash email" />
     <MESSAGE value="delete cascade" />
     <MESSAGE value="delete cascade_validation" />
-    <option name="LAST_COMMIT_MESSAGE" value="delete cascade_validation" />
+    <MESSAGE value="edit" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/bin/console">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/Security/Http/Authentication/AuthenticationUtils.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="28">
@@ -765,49 +805,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/users/delete_user.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="9" column="26" lean-forward="true" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/events/delete_event.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="6" column="79" selection-end-line="55" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="true" />
-            <element signature="e#213#225#0#Twig" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/users/delete_user.html.twig" />
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/events/delete_event.html.twig" />
     <entry file="file://$PROJECT_DIR$/.idea/php.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/birthdays/delete_birthday.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
-          <caret line="69" column="7" selection-start-line="69" selection-start-column="7" selection-end-line="69" selection-end-column="7" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://9d6d9a19-fee8-4cac-922a-72c952c0b6a8/schema/event/table/events">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="2165502d-180d-4d68-9aa1-19a8b6afa97c">
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/birthdays/delete_birthday.html.twig" />
     <entry file="file://$PROJECT_DIR$/app/Resources/views/default/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="40">
@@ -887,16 +890,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/EventBundle/Entity/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="52" column="72" selection-start-line="52" selection-start-column="72" selection-end-line="52" selection-end-column="72" />
-          <folding>
-            <element signature="e#38#86#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/EventBundle/Form/UserType.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
@@ -904,29 +897,6 @@
           <folding>
             <element signature="e#36#76#0#PHP" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/EventBundle/Controller/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="43" selection-start-line="43" selection-start-column="2" selection-end-line="49" selection-end-column="11" />
-          <folding>
-            <element signature="e#42#74#0#PHP" expanded="true" />
-            <element signature="e#727#753#0#PHP" expanded="true" />
-            <element signature="e#1881#1896#1#PHP" expanded="true" />
-            <element signature="e#2277#2303#0#PHP" expanded="true" />
-            <element signature="e#2782#2807#0#PHP" expanded="true" />
-            <element signature="e#3575#3589#1#PHP" expanded="true" />
-            <element signature="e#3722#3752#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/users/register.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="34" column="41" selection-start-line="34" selection-start-column="41" selection-end-line="34" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -976,15 +946,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://9d6d9a19-fee8-4cac-922a-72c952c0b6a8/schema/event/table/users">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="2165502d-180d-4d68-9aa1-19a8b6afa97c">
-          <filtering>
-            <filter text="" />
-          </filtering>
         </state>
       </provider>
     </entry>
@@ -1059,10 +1020,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="das://9d6d9a19-fee8-4cac-922a-72c952c0b6a8/schema/event/table/events">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="92d49bb6-268e-4c22-88b4-cfe5755ee8ae">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/birthdays/my_birthdays.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
+        <state relative-caret-position="624">
           <caret line="45" column="98" selection-start-line="45" selection-start-column="98" selection-end-line="45" selection-end-column="98" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Tests/DependencyInjection/Fixtures/TestBundle/Resources/config/validation.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EventBundle/Entity/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="52" column="73" selection-start-line="52" selection-start-column="73" selection-end-line="52" selection-end-column="73" />
+          <folding>
+            <element signature="e#38#86#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/users/register.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="34" column="36" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EventBundle/Controller/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="40" column="39" selection-start-line="40" selection-start-column="39" selection-end-line="40" selection-end-column="39" />
+          <folding>
+            <element signature="e#42#74#0#PHP" expanded="true" />
+            <element signature="e#728#754#0#PHP" expanded="true" />
+            <element signature="e#1920#1935#1#PHP" expanded="true" />
+            <element signature="e#2316#2342#0#PHP" expanded="true" />
+            <element signature="e#2821#2846#0#PHP" expanded="true" />
+            <element signature="e#3614#3628#1#PHP" expanded="true" />
+            <element signature="e#3761#3791#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://9d6d9a19-fee8-4cac-922a-72c952c0b6a8/schema/event/table/users">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="92d49bb6-268e-4c22-88b4-cfe5755ee8ae">
+          <filtering>
+            <filter text="" />
+          </filtering>
         </state>
       </provider>
     </entry>
